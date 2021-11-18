@@ -1,0 +1,132 @@
+\chapter{数理统计基础}
+\section{概率}
+
+1. 概率的定义（略）概率满足：非负性，规范性，可列可加性
+
+2. 概率的性质：
+
+   ​	重点：逆事件概率；加法公式；有限可加性
+
+3. 条件概率：
+\begin{equation}
+    P(A|B)=\frac{P(AB)}{P(B)}
+\end{equation}
+
+4. 乘法定理：
+\begin{equation}
+    P(AB)=P(A|B)P(A)
+\end{equation}
+
+5. 全概率公式：
+\begin{equation}
+    P(A)=P\left(A \mid B_{1}\right) P\left(B_{1}\right)+
+    P\left(A \mid B_{2}\right) P\left(B_{2}\right)+\ldots+
+    P\left(A \mid B_{n}\right) P\left(B_{n}\right)
+\end{equation}
+
+6. 独立性：满足
+\begin{subequations}
+    \begin{align}
+        P(AB)&=P(A)P(B) \\ 
+        P(B|A)&=P(B)\\
+    \end{align}
+\end{subequations}
+
+ \section{单变量分布}
+ 1. 随机变量的概念（略）
+
+ 2. 分布函数的概念（略）和性质：不减函数；$0\leq F(x)\leq 1 $; $F(x+0)=F(x)$
+ 
+ 3. 概率密度函数
+ \begin{equation}
+    F(x)=\int_{-\infty}^{x}f(t) \rm dt
+\end{equation}
+ 
+ 性质：
+\begin{subequations}
+\begin{align}
+    f(x)&\leq 0 \\ 
+    \int_{-\infty}^{\infty}f(x)dx&=1\\
+    P\{x_1<X<x_2\}&=\int_{x_1}^{x_2}f(x)dx\\
+    F'(x)&=f(x)
+\end{align}
+\end{subequations}
+
+\section{常见分布}
+1. (0-1)分布:
+\begin{equation}
+    P(X=k)=p^{k}(1-p)^{1-k}, 0<p<1, k=0,1
+\end{equation}
+
+2. 二项分布: 
+\begin{equation}
+    P(X=k)=\left(\begin{array}{l}n \\k\end{array}\right) p^{k}(1-p)^{n-k}
+\end{equation}
+
+3. 泊松分布: 
+\begin{equation}
+    P(X=k)=\frac{\lambda^{k} e^{-\lambda}}{k !}, k=0,1,2, \ldots
+\end{equation}
+
+4. Beta分布: 
+   \begin{equation}
+    f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}
+   \end{equation}
+   
+   其中：$0\leq x\leq 1, \ \alpha>0,\ \beta>0,\ \Gamma(z)=\int_{0}^{+\infty} t^{z-1} e^{-t} d t$
+
+5. 均匀分布: 
+   \begin{equation}
+        f(x)=\left\{\begin{array}{ll}\frac{1}{b-a} & a<x<b \\0 & \text { otherwise }\end{array}\right.
+   \end{equation}
+   
+6. 指数分布: 
+\begin{equation}
+    f(x)=\left\{\begin{array}{ll}\frac{1}{\theta} e^{-x / \theta} & x>0 \\0 & \text { otherwise }\end{array}\right.
+\end{equation}
+
+7. 正态分布: 
+\begin{equation}
+    f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
+\end{equation}
+   $f(x)$关于$\mu$对称；$f(\mu)=max(f(x))=\frac{1}{\sqrt{2\pi}\sigma}$。
+
+8. $Gamma$分布: 
+\begin{equation}
+   f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}
+\end{equation}
+   其中：$x>0,\ \alpha>0,\ \beta>0$
+
+9. Inv-$Gamma$分布: 
+\begin{equation}
+    f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{-(\alpha+1)} e^{-\frac{\beta}{x}}
+\end{equation}
+   其中：$x>0,\ \alpha>0,\ \beta>0$
+
+10. $\chi ^2$分布: 
+\begin{equation}
+    f_{k}(x)=\frac{1}{2^{\frac{k}{2}} \Gamma\left(\frac{k}{2}\right)} x^{\frac{k}{2}-1} e^{-\frac{x}{2}}
+\end{equation}
+    等价$\alpha=k/2,\beta = 1/2$的Gamma分布
+
+11. Inv-$\chi ^2$分布: 
+\begin{equation}
+    f(x)=\frac{2^{-\frac{k}{2}}}{\Gamma\left(\frac{k}{2}\right)} x^{-\left(\frac{k}{2}+1\right)} e^{-\frac{1}{2 x}}
+\end{equation}
+    
+    等价$\alpha=k/2,\beta = 1/2$的Inv-Gamma分布
+
+12. Scaled Inv-$\chi ^2$分布: 
+   \begin{equation}
+       f(x)=\frac{\frac{k}{2}^{-\frac{k}{2}} s^{k}}{\Gamma\left(\frac{k}{2}\right)} x^{-\left(\frac{k}{2}+1\right)} e^{-\frac{k s^{2}}{2 x}}
+   \end{equation}
+     等价$\alpha=k/2,\beta = ks^2/2$的Inv-Gamma分布。
+
+
+\section{多元随机变量}
+
+\section{随机变量的数学特征}
+
+\section{频率学派的参数估计}
+
+\section{频率学派的假设检验}

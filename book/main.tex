@@ -1,0 +1,50 @@
+\documentclass[fontset=windows]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}%设置边距，符合Word设定
+\usepackage{ctex}
+\usepackage{setspace}
+\usepackage{subfiles}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{graphicx}%插入图片
+\usepackage{lmodern}
+\graphicspath{{Figures/}}%文章所用图片在当前目录下的 Figures目录
+\usepackage{hyperref} % 对目录生成链接，注：该宏包可能与其他宏包冲突，故放在所有引用的宏包之后
+
+\hypersetup{colorlinks = true,  % 将链接文字带颜色
+	bookmarksopen = true, % 展开书签
+	bookmarksnumbered = true, % 书签带章节编号
+	pdftitle = 统计学笔记, % 标题
+	pdfauthor =RuijunShi} % 作者
+\bibliographystyle{acm}% 参考文献引用格式
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+\renewcommand{\contentsname}{\centerline{Contents}} %经过设置word格式后，将目录标题居中
+
+\title{\heiti\zihao{1} 统计学笔记}
+\author{\songti\zihao{3} Ruijun Shi\thanks{GitHub : \href{https://github.com/RuijunShi}{https://github.com/RuijunShi}}}
+\date{\songti\zihao{3} \today}
+
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+% 摘要abstract
+\begin{abstract}
+	简单的统计学笔记，主要是在天文学，特别是引力波和pulsar timing中遇到的统计学，现在没写多少内容。
+	缓慢更新中\cite{jaranowski_analysis_2009}。
+	同时这也是我第一次用latex编写书籍，学习过程艰难啊。有错误请大家指出！
+	latex资料参考\href{https://github.com/Ali-loner/Ali-loner.github.io}{https://github.com/Ali-loner}
+\end{abstract}
+
+\tableofcontents %生成目录
+
+%导入相关章节
+\include{subchapter/chapter1/chapter1_math.tex}
+\include{subchapter/chapter2_statistics/chapter2_statistics.tex}
+\include{subchapter/chapter3_bayes/chapter3_bayes.tex}
+\include{subchapter/Stochastic_Processes/stochastic_processes.tex}
+\include{subchapter/MCMC/MCMC.tex}
+\include{subchapter/Gaussian_processes/gaussian_processes.tex}
+\bibliography{books} %插入参考文献
+
+\end{document}
