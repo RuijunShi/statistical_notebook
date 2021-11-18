@@ -1,0 +1,284 @@
+\section{Chapter 5层次化模型}
+
+\subsubsection{一、参数化先验分布}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  先验分布
+
+  先验分布是由某个未知参数的分布\(\phi\)给出：
+
+  \[p(\theta|\phi)=\prod_{j=1}^Jp(\theta_j|\phi)\ \ \ \ \  \theta=(\theta_1,\theta_2,\cdots)\]
+
+  边缘化：
+
+  \[p(\theta)=\int\left( \prod_{j=1}^Jp(\theta_j|\phi) \right)p(\phi)d\phi\]
+\item
+  联合先验分布 \(p(\phi,\theta)=p(\theta|\phi)p(\phi)\)
+\item
+  超先验分布 : \(p(\phi)\)
+\item
+  后验分布
+
+  \begin{itemize}
+  \item
+    联合后验 : \(p(\phi,\theta|y)=p(y|\theta)p(\theta|\phi)p(\phi)\)
+  \item
+    条件后验：\(p(\theta|\phi,y)\)
+  \item
+    边缘后验：\(p(\phi|y)\)
+
+    \[p(\phi|y)=\frac{p(\theta,\phi|y)}{p(\theta|\phi,y)}\]
+  \end{itemize}
+\item
+  层次化贝叶斯完整表述
+\end{enumerate}
+
+\begin{equation}
+  \begin{aligned}
+    p(\phi,\theta|y)
+    &\propto p(y|\phi,\theta)p(\phi,\theta)\\
+    &=p(y|\theta)p(\phi,\theta)\\
+    &=p(y|\theta)p(\theta|\phi)p(\phi)
+    \end{aligned}
+\end{equation}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  层次化贝叶斯计算步骤
+\end{enumerate}
+
+\begin{itemize}
+\item
+  写出联合后验分布\(p(\theta,\phi|y)\)：即超先验分布，总体分布和似然分布的乘积
+\item
+  确定条件后验分布\(p(\theta|\phi,y)\)：
+
+  \[p(\theta|\phi,y)=\prod_{j=1}^J p(\theta_j|\phi,y)\]
+\item
+  边缘化给出\(\phi\)的贝叶斯估计
+\end{itemize}
+
+\hypertarget{ux4e8cux4e8cux9879ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}{%
+\subsubsection{二、二项分布的分层贝叶斯模型}\label{ux4e8cux4e8cux9879ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(y_i\)先验（组内模型） \(y_j \sim Bin(n_j,\theta_j)\)
+\item
+  \(\theta_j\)先验（组间模型）：\(\theta_j\sim Beta(\alpha,\beta)\)
+\item
+  联合先验：\(p(\alpha,\beta,\theta)=p(\alpha,\beta)p(\theta|\alpha,\beta)\)
+\item
+  似然：\(p(y|\theta,\alpha,\beta)\)
+\item
+  联合后验：\(p(\theta,\alpha,\beta|y)\)
+
+\begin{equation}
+  \begin{aligned}
+    p(\theta,\alpha,\beta|y)
+    &\propto p(\alpha,\beta)p(\theta|\alpha,\beta)p(y|\theta,\alpha,\beta)\\
+    &=p(\alpha,\beta)\prod_{j=1}^{J}
+    \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}
+    \theta_j^{\alpha-1}(1-\theta_j)^{\beta-1}
+    \prod_{j=1}^{J}
+    \theta_j^{y_j}(1-\theta_j)^{n_j-y_j}
+    \end{aligned}
+\end{equation}
+
+\item
+  条件后验： \(p(\theta|\alpha,\beta,y)\) ： 单参数模型给定的后验
+
+\begin{equation}
+  \begin{aligned}
+    p(\theta \mid \alpha, \beta, y)
+    &=\prod_{j=1}^{J} \frac{\Gamma\left(\alpha+\beta+n_{j}\right)}{\Gamma\left(\alpha+y_{j}\right) \Gamma\left(\beta+n_{j}-y_{j}\right)} 
+    \theta_{j}^{\alpha+y_{j}-1}\left(1-\theta_{j}\right)^{\beta+n_{j}-y_{j}-1}\\
+    &\sim \prod _{j=1}^JBeta(\alpha+y_j,\beta+n_j-y_j)
+    \end{aligned}
+\end{equation}
+
+\item
+  边缘后验：\(p(\alpha,\beta|y)\)
+\begin{equation}
+  \begin{aligned}
+    p(\alpha, \beta \mid y)
+    =& \frac{p(\theta, \alpha, \beta \mid y)}{p(\theta \mid \alpha, \beta, y)} \\
+    &\propto \frac{p(\alpha, \beta) \prod_{j=1}^{J} 
+    \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} 
+    \theta_{j}^{\alpha-1}\left(1-\theta_{j}\right)^{\beta-1} \prod_{j=1}^{J} \theta_{j}^{y_{j}}\left(1-\theta_{j}\right)^{n_{j}-y_{j}}}{\prod_{j=1}^{J} 
+    \frac{\Gamma\left(\alpha+\beta+n_{j}\right)}{\Gamma\left(\alpha+y_{j}\right) \Gamma\left(\beta+n_{j}-y_{j}\right)} 
+    \theta_{j}^{\alpha+y_{j}-1}\left(1-\theta_{j}\right)^{\beta+n_{j}-y_{j}-1}} \\
+    =& p(\alpha, \beta) \prod_{j=1}^{J} \frac{\Gamma(\alpha+\beta) \Gamma\left(\alpha+y_{j}\right) 
+    \Gamma\left(\beta+n_{j}-y_{j}\right)}{\Gamma(\alpha) \Gamma(\beta) \Gamma\left(\alpha+\beta+n_{j}\right)}
+    \end{aligned}
+\end{equation}
+
+\end{enumerate}
+
+\hypertarget{ux4e09ux6b63ux6001ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}{%
+\subsubsection{三、正态分布的分层贝叶斯模型}\label{ux4e09ux6b63ux6001ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{数据结构}
+\end{enumerate}
+
+假设\(J\)个独立试验，每个实验都由\(\theta_j\)给出其参数估计，估计\(n_j\)个\(i.i.d\)正态分布的数据点\(y_{ij}\)，每个点方差为\(\sigma^2\)：
+
+\[y_{i j} | \theta_{j} \sim N\left(\theta_{j}, \sigma^{2}\right) \quad i=1, \ldots, n_{j} \quad j=1, \ldots, J\]
+
+样本均值（充分统计量）：
+
+\[\bar{y}_{\cdot j}=\frac{1}{n_j}\sum_{i=1}^{n_j}y_{ij}\]
+
+样本均值的分布
+
+\[\bar y_{\cdot j} \sim N(\theta_j,\sigma^2_j)\]
+
+样本方差：
+
+\[\sigma^2_j=\frac{\sigma^2}{n_j}\]
+
+样本的均值是从\(\theta\)中估计，样本方差是从\(\sigma\)中估计。
+
+相当于 \(\theta\) 的似然分布：
+
+\[\bar y_{\cdot j}|\theta \sim N(\theta_j,\sigma^2_j)\]
+
+由于 \(\sigma\) 是已知的，下面所有的分布都是在 \(\sigma\)
+已知情况下成立。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{层次化模型：无信息先验}
+\end{enumerate}
+
+\(\theta\)是从参数\((\mu,\tau)\)中抽取：
+
+\[p\left(\theta_{1}, \ldots, \theta_{J} \mid \mu, \tau^{2}\right)=\prod_{j=1}^{J} p\left(\theta_{j} \mid \mu, \tau^{2}\right)\]
+
+边缘化：
+
+\[p\left(\theta_{1}, \ldots, \theta_{J}\right)=
+\iint \prod_{j=1}^{J}
+\left[p\left(\theta_{j} \mid \mu, \tau^{2}\right)\right] 
+p\left(\mu, \tau^{2}\right)
+d \mu d \tau\]
+
+\begin{itemize}
+\item
+  \textbf{先验和似然}
+\end{itemize}
+
+组内抽样：\(\bar y_{\cdot j} \sim N(\theta_j,\sigma^2_j)\)
+
+\(\theta\)的先验（组内模型）：\(\theta|\mu,\tau \sim N(\mu,\tau^2)\)
+
+\(\mu\)的先验： \(p(\mu,\tau)=p(\mu|\tau)p(\tau)\propto p(\tau)\)
+
+\(\theta_j\)似然分布：\(p(y|\theta)\sim(\bar y_{\cdot j}|\theta) \sim N(\theta_j,\sigma^2_j)\)
+
+\begin{itemize}
+\item
+  \textbf{联合后验：}\(p(\theta,\phi|y)\)
+\end{itemize}
+
+\begin{equation}
+  \begin{aligned}
+    p(\theta,\mu,\tau|y)
+    &\propto p(\mu,\tau)p(\theta|\mu,\tau)p(y|\theta)\\
+    &\propto p(\mu,\tau)\prod_{j=1}^{J}p(\theta_j|\mu,\tau^2)
+    \prod_{j=1}^{J}p(\bar y _{\cdot j}|\theta_j,\sigma^2_j)
+    \end{aligned}
+\end{equation}
+
+
+其中：\(\bar y _{\cdot j}\sim N(\theta_j,\sigma_j^2)\)
+
+可以忽略只依赖 \(y\) 和 \(\sigma_j\) 的参数，因为其已知。
+
+\begin{itemize}
+\item
+  \textbf{\(\theta\)条件后验：}\(p(\theta_{j} \mid \mu, \tau, y_{\cdot, j})\)
+\end{itemize}
+
+\[\theta_{j} \mid \mu, \tau, y_{\cdot, j} \sim N\left(\hat{\theta}_{j}, V_{j}\right)\]
+
+其中：
+
+\[\hat{\theta}_{j}=
+\frac
+{\frac{1}{\sigma_{j}^{2}} \bar{y}_{\cdot j}+
+\frac{1}{\tau^{2}} \mu}
+{\frac{1}{\sigma_{j}^{2}}+\frac{1}{\tau^{2}}}\]
+
+\[V_{j}=\frac{1}{\frac{1}{\sigma_{j}^{2}}+\frac{1}{\tau^{2}}}\]
+
+\begin{itemize}
+\item
+  \textbf{超参数边缘后验：}\(p(\mu, \tau \mid y)\)
+\end{itemize}
+
+\[p(\mu, \tau \mid y) \propto p(\mu, \tau) p(y \mid \mu, \tau)\]
+
+对于正态分布：
+
+\[\bar{y}_{\cdot j}\sim N(\mu,\tau^2+\sigma^2)\]
+
+因此：
+
+\[p(\mu, \tau \mid y) \propto p(\mu, \tau) \prod_{j=1}^{J} p\left(\bar{y} _{\cdot j} \mid \mu, \tau^{2}+\sigma_{j}^{2}\right)\]
+
+\[\bar{y}_{\cdot j} \mid \mu, (\tau^{2}+\sigma_{j}^{2}) 
+\sim
+N \left( \mu, \tau^{2} + \sigma_{j}^{2} \right)\]
+
+\begin{itemize}
+\item
+  \textbf{给定\(\tau\)下\(\mu\)的边缘后验分布}：
+  \(p(\mu \mid \tau, y)\)从单参数模型中得出的结论
+\end{itemize}
+
+\begin{equation}
+  \begin{array}{c}
+    \mu \mid \tau, y \sim N\left(\hat{\mu}, V_{\mu}\right) \\
+    \end{array}
+\end{equation}
+
+
+\[\hat{\mu}=\frac{\sum_{j=1}^{J} \frac{1}{\sigma_{j}^{2}+\tau^{2}} \bar{y}_{\cdot j}}{\sum_{j=1}^{J} \frac{1}{\sigma_{j}^{2}+\tau^{2}}}\]
+
+\[\\V_{\mu}^{-1}=\sum_{j=1}^{J} \frac{1}{\sigma_{j}^{2}+\tau^{2}}\]
+
+\begin{itemize}
+\item
+  \(\tau\)的后验：\(p(\tau \mid y) \)
+\end{itemize}
+
+\begin{equation}
+  \begin{aligned}
+    p(\tau \mid y) 
+    &=\frac{p(\mu, \tau \mid y)}{p(\mu \mid \tau, y)} \\
+    &\propto 
+    \frac{p(\tau) \prod_{j=1}^{J} 
+    N\left(\bar{y}_{ \cdot j }\mid \mu, \sigma_{j}^{2}+\tau^{2}\right)}
+    {N\left(\mu \mid \hat{\mu}, V_{\mu}\right)} \\
+    & \propto p(\tau) V_{\mu}^{1 / 2} 
+    \prod_{j=1}^{J}\left(\sigma_{j}^{2}+\tau^{2}\right)^{-1 / 2} 
+    \exp \left(
+    -\frac{\left(\bar{y}_{\cdot j}-\hat{\mu}\right)^{2}}{2\left(\sigma_{j}^{2}+\tau^{2}\right)}
+    \right)
+    \end{aligned}
+\end{equation}
+
+
+\begin{itemize}
+\item
+  从后往前采样，即先算出\(\tau\)的后验，然后依次采样算出\(\mu\)的后验，超参数联合后验，\(\theta\)的条件后验，联合后验等。
+\end{itemize}

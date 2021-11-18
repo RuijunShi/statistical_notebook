@@ -1,0 +1,156 @@
+\section{贝叶斯多参数模型}
+\subsubsection{一、多参数模型处理}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{置之不理}
+\item
+  \textbf{边缘化}
+\begin{equation}
+  p(\theta_1|y)=\int p(\theta_1,\theta_2|y)d\theta_2
+\end{equation}
+  
+  用贝叶斯公式展开：
+
+  \[p(\theta_1,\theta_2|y)\propto p(y|\theta_1,\theta_2)p(\theta_1,\theta_2)\]
+
+  将\(\theta_2\)边缘化积分，得到\(\theta_1\)的后验分布。
+\item
+  \textbf{平均化}
+
+  \[p(\theta_1|y)=\int p(\theta_1|\theta_2,y)p(\theta_2|y)d\theta_2\]
+\end{enumerate}
+
+\hypertarget{ux4e8cux65e0ux4fe1ux606fux5148ux9a8cux7684ux6b63ux6001ux5206ux5e03}{%
+\subsubsection{二、无信息先验的正态分布}\label{ux4e8cux65e0ux4fe1ux606fux5148ux9a8cux7684ux6b63ux6001ux5206ux5e03}}
+
+\begin{itemize}
+\item
+  先验：
+
+  \[p(\mu,\ln\sigma^2)\sim U(\mu,\ln \sigma^2)\]
+
+  或者先验写为：
+
+  \[p(\mu,\sigma^2)\sim\frac{1}{\sigma^2}\]
+\item
+  似然 ( \textbf{有\(n\)次观测 }) ：
+
+  \[p(y|\mu,\sigma^2)=\sigma^{-n}\exp \left(
+  -\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\mu)^2
+  \right)\]
+\item
+  联合后验：
+
+  \[p(\mu,\sigma^2|y)\propto \sigma^{-n-2}\exp\left(
+  -\frac{1}{2\sigma^2}[(n-1)s^2+n(\bar{y}-\mu)^2]
+  \right)\]
+
+  其中：
+
+  \[s^2=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)^2\]
+\item
+  边缘后验\(p(\sigma^2|y)\)：
+
+  \begin{align*}
+  p(\sigma^2|y)
+  &\propto \int p(\mu,\sigma^2|y)d\mu\\
+  &\propto(\sigma^2)^{-\frac{n+1}{2}}\exp\left(
+  -\frac{(n-1)s^2}{2\sigma^2}
+  \right)\\
+  &\sim Inv-\chi^2(n-1,s^2)
+  \end{align*}
+\item
+  边缘后验\(p(\mu|y)\)：
+
+  \begin{align*}
+  p(\mu|y)
+  &=\int_0^{\infty}p(\mu,\sigma^2|y)d\sigma^2\\
+  &\propto\left[
+  1+\frac{n(\mu-\bar y)^2}{(n-1)s^2}^{-n/2}
+  \right] \\
+  &\sim t_{n-1}(\bar y,s^2/n)
+  \end{align*}
+\item
+  预测后验分布
+
+  \[p(\widetilde y|y)=\iint  p(\widetilde y |\mu,\sigma^2,y)p(\mu,\sigma^2|y)
+  d\mu d\sigma^2\]
+\end{itemize}
+
+\hypertarget{ux4e09ux5171ux8f6dux5148ux9a8cux5206ux5e03}{%
+\subsubsection{三、共轭先验分布}\label{ux4e09ux5171ux8f6dux5148ux9a8cux5206ux5e03}}
+
+\begin{itemize}
+\item
+  先验分布：
+
+  \(\mu|\sigma^2 \sim N(\mu_0,\sigma^2/\kappa_0)\)
+
+  \(\sigma^2 \sim Inv-\chi^2(\nu_0,\sigma^2_0)\)
+\item
+  联合先验分布
+
+  \begin{align*}
+  p(\mu,\sigma^2)
+  &=p(\mu|\sigma^2)p(\sigma^2)\\
+  &\propto N-Inv-\chi^2(\mu_0,\sigma^2_0/\kappa_0\ ;\ \nu_0,\sigma^2_0 )
+  \end{align*}
+\item
+  似然分布
+
+  \[p(y|\mu,\sigma^2)=\sigma^{-n}\exp \left(
+  -\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\mu)^2
+  \right)\]
+\item
+  联合后验分布
+\begin{equation}
+  \begin{aligned}
+    p\left(\mu, \sigma^{2} \mid y\right) 
+    & \propto \sigma^{-1}\left(\sigma^{2}\right)^{\left(\nu_{0} / 2+1\right)} e^{-\frac{1}{2 \sigma^{2}}\left[\nu_{0} \sigma_{0}^{2}+\kappa_{0}\left(\mu-\mu_{0}\right)^{2}\right]}
+    \left(\sigma^{2}\right)^{-n / 2} e^{-\frac{1}{2 \sigma^{2}}\left[(n-1) s^{2}+n(\bar{y}-\mu)^{2}\right]} \\
+    & \propto \mathrm{N}-\operatorname{Inv}-\chi^{2}\left(\mu_{n}, \sigma_{n}^{2} / \kappa_{n} ; \nu_{n}, \sigma_{n}^{2}\right)
+  \end{aligned}
+\end{equation}
+
+
+\end{itemize}
+
+其中参数为：
+\begin{equation}
+  \begin{array}{c}
+    \mu_{n}   = \frac{\kappa_{0}}{\kappa_{0}+n} \mu_{0}+\frac{n}{\kappa_{0}+n} \bar{y}\\
+    \kappa_{n}= \kappa_{0}+n \\
+    \nu_{n}   = \nu_{0}+n \\
+    \nu_{n} \sigma_{n}^{2}=\nu_{0} \sigma_{0}^{2}+(n-1) s^{2}+\frac{\kappa_{0} n}{\kappa_{0}+n}\left(\bar{y}-\mu_{0}\right)^{2}
+    \end{array}
+\end{equation}
+
+
+\begin{itemize}
+\item
+  条件后验分布\(p(\mu|\sigma^2,y)\)
+\end{itemize}
+
+\[(\mu \mid \sigma^{2}, y) \sim \mathrm{N}\left(\mu_{n} \frac{\sigma^{2}}{\kappa_{n}}\right)\]
+
+\begin{itemize}
+\item
+  方差边缘后验分布\(p(\sigma^2|y)\)
+\end{itemize}
+
+\[(\sigma^{2} \mid y) \sim \operatorname{Inv}-\chi^{2}\left(\nu_{n}, \sigma_{n}^{2}\right)\]
+
+\begin{itemize}
+\item
+  均值边缘后验分布\(p(\mu|y)\)
+\end{itemize}
+
+\begin{equation}
+  \begin{aligned}
+    p(\mu \mid y) 
+    & \propto\left[1+\frac{\kappa_{n}\left(\mu-\mu_{n}\right)^{2}}{\nu_{n} \sigma_{n}^{2}}\right]^{-\left(\nu_{n}+1\right) / 2} \\
+    & = t_{\nu_{n}}\left(\mu \mid m u_{n}, \sigma_{n}^{2} / \kappa_{n}\right)
+  \end{aligned}
+\end{equation}

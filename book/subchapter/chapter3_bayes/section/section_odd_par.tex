@@ -1,0 +1,200 @@
+\section{贝叶斯单参数估计}
+\subsubsection{一、二项分布估计}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{无信息先验}
+\end{enumerate}
+
+\begin{itemize}
+\item
+  似然：
+\end{itemize}
+
+\begin{equation} 
+p(y|\theta)=
+\left(                 
+  \begin{array}{ccc}   
+    n\\ 
+    y\\  
+  \end{array}
+\right)                 
+\theta^y(1-\theta)^{n-y}
+\end{equation}
+
+\begin{itemize}
+\item
+  先验：均匀分布
+\item
+  后验：
+\end{itemize}
+
+\[p(\theta|y)\propto\theta^y(1-\theta)^{n-y}\sim Beta(y+1,n-y+1)\]
+
+\begin{itemize}
+\item
+  预测：
+\end{itemize}
+
+\[Pr(\widetilde y=1|y)=\int_0^1Pr(\widetilde y=1|\theta,y)
+=\int_0^1\theta p(\theta|y)d\theta=E(\theta|y)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{有信息先验}
+\end{enumerate}
+
+\begin{itemize}
+\item
+  先验：\(p(\theta)\propto \theta^{\alpha-1}(1-\theta)^{\beta-1}\)
+\item
+  似然：
+\end{itemize}
+\begin{equation}      
+p(y|\theta)=
+\left(                 
+  \begin{array}{ccc}   
+    n\\ 
+    y\\  
+  \end{array}
+\right)                 
+\theta^y(1-\theta)^{n-y}
+\end{equation}
+
+\begin{itemize}
+\item
+  后验：
+\end{itemize}
+
+\[p(\theta|y)\propto \theta^{y+\alpha-1}(1-\theta)^{n-y+\beta-1}\sim Beta(\alpha+y,\beta+n-y)\]
+
+\begin{itemize}
+\item
+  后验期望：\(E(\theta|y)=\frac{\alpha+y}{\alpha+\beta+n}\)
+\item
+  先验期望：\(E(y)=\frac{\alpha}{\alpha+\beta}\)
+\end{itemize}
+
+当\(n\rightarrow\infty\): \(E(\theta|y)\rightarrow y/n\)
+
+数据很大的时候可以用正态分布近似后验分布
+
+\hypertarget{ux4e8cux6b63ux6001ux5206ux5e03ux53c2ux6570ux4f30ux8ba1}{%
+\subsubsection{二、正态分布参数估计}\label{ux4e8cux6b63ux6001ux5206ux5e03ux53c2ux6570ux4f30ux8ba1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{已知方差求均值}
+\end{enumerate}
+
+\begin{itemize}
+\item
+  似然：
+\end{itemize}
+
+\[p(y|\theta)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[-\frac{1}{2\sigma^2}(y-\theta)^2\right]\sim N(\theta,\sigma^2)\]
+
+\begin{itemize}
+\item
+  先验：
+
+  \[p(\theta)\propto\exp\left(-\frac{1}{2\tau_0^2}(\theta-\mu_0)^2\right)
+  \sim N(\mu_0,\tau_0^2)\]
+\item
+  后验：
+
+  \[p(\theta|y)\propto\exp\left(-\frac{1}{2\tau_1^2}(\theta-\mu_1)^2\right)
+  \sim N(\mu_1,\tau_1)\]
+
+  其中：
+
+  \[\mu_1=\frac
+  {\frac{1}{\tau_0^2}\mu_0+\frac{1}{\sigma^2}y}
+  {\frac{1}{\tau_0^2}+\frac{1}{\sigma^2}}\]
+
+  \[\frac{1}{\tau_1^2}=\frac{1}{\tau_0^2}+\frac{1}{\sigma^2}\]
+
+  精度：方差的倒数
+\item
+  预测：
+
+  \begin{align*}
+  p(\widetilde y|y)&=\int p(\widetilde y | \theta)p(\theta|y)d\theta\\
+  &\propto
+  \int\exp\left(-\frac{(\widetilde y - \theta)^2}{2\sigma^2}\right)
+  \exp \left(-\frac{(\theta-\mu_1)^2}{2\tau_1^2}\right)d\theta
+  \\
+  E(\widetilde y|\theta)&=\theta\\
+  D(\widetilde y|\theta)&=\sigma^2+\tau^2_1
+  \end{align*}
+\item
+  多个相互独立数据：
+\end{itemize}
+
+
+\begin{equation}
+  \begin{aligned}
+  p(\theta \mid y) & \propto p(\theta) p(y \mid \theta) 
+  \\&=p(\theta) \prod_{i=1}^{n} p\left(y_{i} \mid \theta\right) 
+  \\& \propto \exp \left(-\frac{1}{2 \tau_{0}^{2}}\left(\theta-\mu_{0}\right)^{2}\right) \prod_{i=1}^{n} \exp \left(-\frac{1}{2 \sigma^{2}}\left(y_{i}-\theta\right)^{2}\right) 
+  \\& \propto \exp \left(-\frac{1}{2}\left[\frac{1}{\tau_{0}^{2}}\left(\theta-\mu_{0}\right)^{2}+\frac{1}{\sigma^{2}} \sum_{i=1}^{n}\left(y_{i}-\theta\right)^{2}\right]\right)
+  \end{aligned}
+\end{equation}
+可得：
+
+\[p(\theta|y_1,\cdots,y_n)=p(\theta|\bar y)=N(\theta | \mu_n,\tau_n^2)\]
+
+其中：
+
+\[\mu_{n}=\frac{\frac{1}{\tau_{0}^{2}} \mu_{0}+\frac{n}{\sigma^{2}} \bar{y}}{\frac{1}{\tau_{0}^{2}}+\frac{n}{\sigma^{2}}}\]
+
+\[\frac{1}{\tau_{n}^{2}}=\frac{1}{\tau_{0}^{2}}+\frac{n}{\sigma^{2}}\]
+
+若\(n\rightarrow+\infty\)，\(\tau_0\)不变，则：\(\theta|y\sim N(\bar{y},\sigma^2/n)\)
+
+若\(\tau\rightarrow+\infty\)，\(n\)
+不变，则：\(\theta|y\sim N(\bar{y},\sigma^2/n)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{已知均值求方差}
+\end{enumerate}
+
+由于有\(n\)个服从\(\sim N(\theta,\sigma^2)\)的分布，因此：
+
+\begin{itemize}
+\item
+  似然：
+\end{itemize}
+
+\[p(y|\sigma^2)\propto\sigma^{-n}\exp\left(-
+\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\theta)^2
+\right)=(\sigma^2)^{-n/2}e^{-\frac{n}{2\sigma^2}v}\]
+
+其中：
+
+\[v=\frac{1}{n}\sum_{i=1}^n(y_i-\theta)^2\]
+
+\begin{itemize}
+\item
+  共轭先验：\(p(\sigma^2)\propto(\sigma^2)^{-\alpha+1}e^{\beta/\sigma^2} \sim \rm Inv-\chi^2(\upsilon_0,\sigma^2_0)\)
+\item
+  后验：
+\end{itemize}
+
+\begin{equation}
+    \begin{aligned}
+        p(\sigma^2|y)&\propto p(\sigma^2)p(y|\sigma^2)\\
+        &\propto \left( \frac{\sigma^2_0}{\sigma^2} \right)^{v_0/2+1}
+        \exp\left( -\frac{\upsilon_0\sigma^2_0}{2\sigma^2} \right)\cdot
+        (\sigma^2)^{-n/2}\exp\left(-\frac{n}{2}\frac{\upsilon}{\sigma^2}\right)\\
+        &\propto (\sigma^2)^{-((n+\upsilon_0)/2+1)}\exp\left(
+        -\frac{1}{2\sigma^2}(\upsilon_0\sigma_0^2+n\upsilon)
+        \right)\\
+        &\sim Inv-\chi^2(\upsilon_0+n,\frac{\upsilon_0\sigma_0^2+n\upsilon}{\upsilon_0+n})
+        \end{aligned}
+\end{equation}
