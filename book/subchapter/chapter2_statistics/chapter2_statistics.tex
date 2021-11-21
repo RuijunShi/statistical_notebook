@@ -32,27 +32,114 @@
     \end{align}
 \end{subequations}
 
- \section{单变量分布}
- 1. 随机变量的概念（略）
+\section{单变量分布和多变量分布}
+\setlength{\parindent}{2em}1. 随机变量的概念（略）
 
- 2. 分布函数的概念（略）和性质：不减函数；$0\leq F(x)\leq 1 $; $F(x+0)=F(x)$
+\indent2. 分布函数的概念（略）和性质：不减函数；$0\leq F(x)\leq 1 $; $F(x+0)=F(x)$
  
- 3. 概率密度函数
+\indent3. 概率密度函数
  \begin{equation}
     F(x)=\int_{-\infty}^{x}f(t) \rm dt
 \end{equation}
  
- 性质：
-\begin{subequations}
-\begin{align}
-    f(x)&\leq 0 \\ 
-    \int_{-\infty}^{\infty}f(x)dx&=1\\
-    P\{x_1<X<x_2\}&=\int_{x_1}^{x_2}f(x)dx\\
-    F'(x)&=f(x)
-\end{align}
-\end{subequations}
+\begin{prop}{概率分布的性质}
+    \begin{subequations}
+    \begin{align}
+        f(x)&\leq 0 \\ 
+        \int_{-\infty}^{\infty}f(x)dx&=1\\
+        P\{x_1<X<x_2\}&=\int_{x_1}^{x_2}f(x)dx\\
+        F'(x)&=f(x)
+    \end{align}
+    \end{subequations}
+\end{prop}
 
-\section{常见分布}
+
+\section{随机变量的数学特征}
+\subsection{数学期望与方差}
+
+\begin{definition}{数学期望}
+    \\积分:
+    \begin{equation}
+        E(X)=\int_{-\infty}^{\infty}xf(x)\mathrm{d} x
+    \end{equation}
+    为连续性随机变量的数学期望，离散状态下为:
+    \begin{equation}
+        E(X)=\sum_{k=1}^{\infty}x_k p_k
+    \end{equation}
+\end{definition}
+
+\begin{prop}{方差的性质}
+    \begin{itemize}
+        \item 设$C$为常数，则有$E(C)=C$
+        \item 设$C$为常数，$X$为随机变量，则有$$ E(CX)=CE(X) $$
+        \item 设$X,Y$两个随机变量，则有：$$ E(X+Y)=E(X)+E(Y) $$
+        \item 设$X,Y$是两个相互独立的随机变量，则有：$$ E(XY)=E(X)+E(Y) $$
+    \end{itemize}
+\end{prop}
+
+\begin{definition}{方差\\}
+    \setlength{\parindent}{2em}设$X$是一个随机变量，若$E\{ [X-E(X)]^2 \}$存在，则称为$E\{ [X-E(X)]^2 \}$为随机变量$X$的方差，记为$D(X)$或者$\mathrm{Var}(X)$
+\end{definition}
+\setlength{\parindent}{2em}根据定义，我们把方差写为：
+\begin{equation}
+    D(X)=\int^{\infty}_{-\infty} [x-E(x)]^2 f(x) \mathrm{d} x
+\end{equation}
+随机变量的方差可以写为：
+\begin{equation}
+    D(X)=E(X^2)-[E(X)]^2
+\end{equation}
+
+\begin{prop}{方差的性质}
+    \begin{itemize}
+        \item 设C为常数：D(C)=0
+        \item 设C为常数，X为随机变量，有：$$D(CX)=C^2D(X),\qquad D(X+C)=D(X)$$
+        \item 设X,Y为两个随机变量，有：$$D(X+Y)=D(X)+D(Y)+2E\{ (X-E(X))(Y-E(Y)) \}$$ 若X,Y相互独立，则有：$$ D(X+Y)=D(X)+D(Y) $$
+        \item $D(X)=0$的充要条件是X以概率为1取常数$E(X)$，即：$$ P\{ X=E(X) \}=1 $$
+    \end{itemize}
+\end{prop}
+
+\subsection{矩和协方差矩阵}
+\begin{definition}{协方差}
+    随机变量$E\{ (X-E(X))(Y-E(Y)) \}$称为变量X,Y的协方差，记为$\mathrm{Cov}(X,Y)$：
+    \begin{equation}
+        \mathrm{Cov}(X,Y)=E\{[X-E(X)][Y-E(Y)]\}
+    \end{equation}
+\end{definition}
+\setlength{\parindent}{2em} 协方差是变量误差的一种描述。若随机变量X,Y完全独立则有$\mathrm{Cov}(X,Y)=0$
+\begin{definition}{相关系数}
+    \begin{equation}
+        \rho_{X,Y}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+    \end{equation}
+\end{definition}
+当二维随机变量的二阶中心矩存在：
+\begin{equation}
+    \begin{aligned}
+        c_{11}&=E\{[ X_1-E(X_1) ]^2\}\\
+        c_{12}&=E\{[ X_1-E(X_1) ][ X_2-E(X_2) ]\}\\
+        c_{21}&=E\{[ X_2-E(X_2) ][ X_1-E(X_1) ]\}\\
+        c_{22}&=E\{[ X_2-E(X_2) ]^2\}
+    \end{aligned}
+\end{equation}
+则矩阵$$ \left[\begin{matrix}
+    c_{11}&c_{12}\\
+    c_{21}&c_{22}
+\end{matrix}\right] $$
+称为协方差矩阵。若有$n$维随机变量，则矩阵：
+\begin{equation}
+    \mathbf{C}=\left[
+    \begin{matrix}
+        c_{11} & c_{12} & \cdots & c_{1n}\\
+        c_{21} & c_{22} & \cdots & c_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        c_{n1} & c_{n2} & \cdots & c_{nn}\\
+    \end{matrix}
+    \right]
+\end{equation}
+该矩阵是一个对称矩阵。
+\subsection{多元正态分布及协方差矩阵的直观理解}
+协方差矩阵描述随机变量的总体误差，而方差是协方差的一种特殊形式。协方差可以用多元正态分布直观理解其意义。
+\section{常见分布及其期望方差}
+\subsection{离散型分布}
 1. (0-1)分布:
 \begin{equation}
     P(X=k)=p^{k}(1-p)^{1-k}, 0<p<1, k=0,1
@@ -67,7 +154,7 @@
 \begin{equation}
     P(X=k)=\frac{\lambda^{k} e^{-\lambda}}{k !}, k=0,1,2, \ldots
 \end{equation}
-
+\subsection{连续型分布}
 4. Beta分布: 
    \begin{equation}
     f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}
@@ -122,11 +209,11 @@
    \end{equation}
      等价$\alpha=k/2,\beta = ks^2/2$的Inv-Gamma分布。
 
+\section{大数定律与数理统计}
 
-\section{多元随机变量}
 
-\section{随机变量的数学特征}
+\section{误差传递}
 
-\section{频率学派的参数估计}
+\section{参数估计}
 
-\section{频率学派的假设检验}
+\section{假设检验}

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.10.2)  18 NOV 2021 23:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.10.2)  21 NOV 2021 21:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/notebook/statistical_notebook/book/main.tex
+**d:/notebook/statistical_notebook/book/main
 (d:/notebook/statistical_notebook/book/main.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (c:/texlive/2021/texmf-dist/tex/latex/base/report.cls
@@ -553,9 +553,9 @@ Package: xurl 2020/12/30 v 0.09a modify URL breaks
 ) (c:/texlive/2021/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 28.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 28.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 28.
+Package hyperref Info: Option `colorlinks' set `true' on input line 29.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 29.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 29.
  (c:/texlive/2021/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.bdg
 File: UTF8.bdg 2015/04/18 4.8.4
 ) (c:/texlive/2021/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.enc
@@ -563,110 +563,110 @@ File: UTF8.enc 2015/04/18 4.8.4
 ) (c:/texlive/2021/texmf-dist/tex/latex/cjk/texinput/UTF8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 37.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (d:/notebook/statistical_notebook/book/main.aux (d:/notebook/statistical_notebook/book/subchapter/chapter1/chapter1_math.aux) (d:/notebook/statistical_notebook/book/subchapter/chapter2_statistics/chapter2_statistics.aux) (d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/chapter3_bayes.aux) (d:/notebook/statistical_notebook/book/subchapter/Stochastic_Processes/stochastic_processes.aux) (d:/notebook/statistical_notebook/book/subchapter/MCMC/MCMC.aux) (d:/notebook/statistical_notebook/book/subchapter/Gaussian_processes/gaussian_processes.aux))
+) (./main.aux (./subchapter/chapter1/chapter1_math.aux) (./subchapter/chapter2_statistics/chapter2_statistics.aux) (./subchapter/chapter3_bayes/chapter3_bayes.aux) (./subchapter/Stochastic_Processes/stochastic_processes.aux) (./subchapter/MCMC/MCMC.aux) (./subchapter/Gaussian_processes/gaussian_processes.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 37.
-LaTeX Font Info:    Trying to load font information for OML+txmi on input line 37.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 39.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 37.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 39.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for OMX+txex on input line 37.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 39.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for U+txexa on input line 37.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 39.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -703,7 +703,7 @@ LaTeX Font Info:    ... okay on input line 37.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 37.
+LaTeX Info: Redefining \selectfont on input line 39.
  (c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count292
@@ -723,7 +723,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 37.
+Package hyperref Info: Link coloring ON on input line 39.
  (c:/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (c:/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -733,191 +733,78 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count298
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
- (d:/notebook/statistical_notebook/book/main.out) (d:/notebook/statistical_notebook/book/main.out)
+LaTeX Info: Redefining \ref on input line 39.
+LaTeX Info: Redefining \pageref on input line 39.
+LaTeX Info: Redefining \nameref on input line 39.
+ (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for C70+zhhei on input line 39.
+LaTeX Font Info:    Trying to load font information for C70+zhhei on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/zhmetrics/c70zhhei.fd
 File: c70zhhei.fd 2009/09/23 4.8.2
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 39.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 39.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 39.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 39.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12.045> on input line 39.
+(Font)              <12.045> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 39.
+(Font)              <8> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 39.
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 39.
+(Font)              <6> on input line 41.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 39.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 39.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 39.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 39.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <16.06> on input line 39.
+(Font)              <16.06> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.05249> on input line 39.
+(Font)              <14.05249> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.53937> on input line 39.
-LaTeX Font Info:    Trying to load font information for C70+zhsong on input line 39.
+(Font)              <10.53937> on input line 41.
+LaTeX Font Info:    Trying to load font information for C70+zhsong on input line 41.
  (c:/texlive/2021/texmf-dist/tex/latex/zhmetrics/c70zhsong.fd
 File: c70zhsong.fd 2009/09/23 4.8.2
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9.03374> on input line 39.
+(Font)              <9.03374> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 39.
+(Font)              <5> on input line 41.
  (c:/texlive/2021/texmf-dist/tex/generic/ctex/zhmap/ctex-zhmap-windows.tex
 File: ctex-zhmap-windows.tex 2021/03/14 v2.5.6 Windows font map loader for pdfTeX and DVIPDFMx (CTEX)
 {c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{UGBK.sfd}{Unicode.sfd}) [1
 
 ]
-LaTeX Font Info:    Trying to load font information for C70+rm on input line 41.
+LaTeX Font Info:    Trying to load font information for C70+rm on input line 43.
  (c:/texlive/2021/texmf-dist/tex/latex/ctex/fd/c70rm.fd
-File: c70rm.fd 2021/03/14 v2.5.6 Chinese font definition (CTEX)
-)
-Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (quanjiao) on input line 42.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.46 \end{abstract}
-                    [1] (d:/notebook/statistical_notebook/book/main.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 3.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.36 ...ine {6.2}核密度估计}{21}{section.6.2}
-                                                  % [1
-
-])
-\tf@toc=\write4
-\openout4 = `main.toc'.
-
- [2]
-\openout2 = `subchapter/chapter1/chapter1_math.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/chapter1/chapter1_math.tex
-Chapter 1.
-<Figures//SVD.jpg, id=309, 722.7pt x 542.025pt>
-File: Figures//SVD.jpg Graphic file (type jpg)
-<use Figures//SVD.jpg>
-Package pdftex.def Info: Figures//SVD.jpg  used on input line 6.
-(pdftex.def)             Requested size: 144.53743pt x 108.40308pt.
-) [3
-
-
- <d:/notebook/statistical_notebook/book/Figures//SVD.jpg>]
-\openout2 = `subchapter/chapter2_statistics/chapter2_statistics.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/chapter2_statistics/chapter2_statistics.tex
-Chapter 2.
-[4
-
-
-
-
-] [5]) [6]
-\openout2 = `subchapter/chapter3_bayes/chapter3_bayes.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/chapter3_bayes.tex
-Chapter 3.
-(d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/section/section_odd_par.tex
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 12.
- (c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [7
-
-
-
-
-] [8] [9]) (d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/section/section_multi_pars.tex [10] [11] [12]) (d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/section/section_Hier_bayes_model.tex [13] [14] [15] [16] [17])) [18]
-\openout2 = `subchapter/Stochastic_Processes/stochastic_processes.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/Stochastic_Processes/stochastic_processes.tex
-Chapter 4.
-) [19
-
-
-
-
-]
-\openout2 = `subchapter/MCMC/MCMC.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/MCMC/MCMC.tex
-Chapter 5.
-) [20
-
-
-
-
-]
-\openout2 = `subchapter/Gaussian_processes/gaussian_processes.aux'.
-
- (d:/notebook/statistical_notebook/book/subchapter/Gaussian_processes/gaussian_processes.tex
-Chapter 6.
-) [21
-
-
-
-
-] (d:/notebook/statistical_notebook/book/main.bbl) [22
-
-
-
-] (d:/notebook/statistical_notebook/book/main.aux (d:/notebook/statistical_notebook/book/subchapter/chapter1/chapter1_math.aux) (d:/notebook/statistical_notebook/book/subchapter/chapter2_statistics/chapter2_statistics.aux) (d:/notebook/statistical_notebook/book/subchapter/chapter3_bayes/chapter3_bayes.aux) (d:/notebook/statistical_notebook/book/subchapter/Stochastic_Processes/stochastic_processes.aux) (d:/notebook/statistical_notebook/book/subchapter/MCMC/MCMC.aux) (d:/notebook/statistical_notebook/book/subchapter/Gaussian_processes/gaussian_processes.aux))
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D629A5DF7163E6A9729D298711A59BF4;3669.
- ) 
-Here is how much of TeX's memory you used:
- 16280 strings out of 478994
- 254349 string characters out of 5862207
- 627020 words of memory out of 5000000
- 32866 multiletter control sequences out of 15000+600000
- 554467 words of font info for 298 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 87i,11n,90p,552b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc
-
-pdfTeX warning: pdflatex.exe (file c:/Windows/Fonts/simsun.ttc): subfont unisong20: wrong mapping: character 11 --> 0x200B --> .notdef
-><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/txfonts/txexa.pfb>
-Output written on d:/notebook/statistical_notebook/book/main.pdf (24 pages, 805139 bytes).
-PDF statistics:
- 1002 PDF objects out of 1200 (max. 8388607)
- 764 compressed objects within 8 object streams
- 134 named destinations out of 1000 (max. 500000)
- 510 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+File: c7

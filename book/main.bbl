@@ -1,9 +1,21 @@
 \begin{thebibliography}{1}
 
 \bibitem{jaranowski_analysis_2009}
-{\sc Jaranowski, P., and Królak, A.}
+Piotr Jaranowski and Andrzej Królak.
 \newblock {\em Analysis of gravitational-wave data}.
-\newblock No.~29 in Cambridge monographs on particle physics, nuclear physics
-  and cosmology. Cambridge University Press, Cambridge ; New York, 2009.
+\newblock Number~29 in Cambridge monographs on particle physics, nuclear
+  physics and cosmology. Cambridge University Press, Cambridge ; New York,
+  2009.
+
+\bibitem{gelman_bayesian_2014}
+Andrew Gelman, John~B Carlin, Hal~Steven Stern, David~B Dunson, Aki Vehtari,
+  and Donald~B Rubin.
+\newblock {\em Bayesian data analysis}.
+\newblock 2014.
+\newblock OCLC: 1063654237.
+
+\bibitem{justin_ellis_2017_1037579}
+Justin Ellis and Rutger van Haasteren.
+\newblock jellis18/ptmcmcsampler: Official release, October 2017.
 
 \end{thebibliography}

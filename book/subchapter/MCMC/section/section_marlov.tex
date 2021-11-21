@@ -1,0 +1,311 @@
+\section{马尔科夫链 Markov Chain}
+
+\subsection{马尔科夫链原理}
+
+{一、马尔科夫链的定义}
+
+首先我们来看一个天气预报的例子。假设我们天气只有2种状态，一种是晴天，一种是雨天，那我我们从以前的观测发现今天是晴天，明天是晴天或者雨天的概率为：\([0.9,0.1]^T\)，而今天雨天，明天晴天或者阴天的概率为：\([0.5,0.5]^T\)，也就是说我们不考虑其他影响，只考虑今天对明天天气的影响。那怎么表示明天的下雨的概率呢？简单来，我们可以做一个``加权平均''，明天是晴天的概率也就是等于：
+
+\[P_{晴}=P_{晴-晴}+P_{雨-晴}=今天晴天的概率*明天晴天的概率+今天雨天的概率*明天晴天的概率\]
+
+同理，阴天的概率也可以相似地形式算出来。这个形式是不是很像我们的矩阵乘法？首先我们写出一个\textbf{概率转移矩阵\(P\)}（下文会讲这个矩阵的作用）：
+
+\begin{equation}
+  P = 
+\begin{bmatrix} 
+0.9 &0.5\\0.1 & 0.5
+\end{bmatrix} 
+\end{equation}
+
+
+\begin{figure}
+\centering
+%\includegraphics{C:/Users/astro_gh/Desktop/QQ图片20201130235426.png}
+\caption{QQ图片20201130235426}
+\end{figure}
+
+在时刻\(t_0\)我们假设今天的天气状态是晴天，也就是说今天晴天的概率为1，雨天的概率为0：
+
+\begin{equation}
+  \pi (0)=
+\begin{bmatrix} 
+1\\0
+\end{bmatrix} 
+\end{equation}
+
+
+那么我们要怎么算出明天天气是晴天或者雨天的概率呢？我们可以：
+\begin{equation}
+  \pi(1)  = P\pi(0) =
+    \begin{bmatrix} 
+    0.9 &0.5\\0.1 & 0.5
+    \end{bmatrix} 
+    \begin{bmatrix} 
+    1\\0
+    \end{bmatrix} 
+    =
+    \begin{bmatrix} 
+    0.9\\0.1
+    \end{bmatrix}
+\end{equation}
+
+
+这意味着今天晴天，明天晴天的概率为0.9，下雨的概率为0.1。上面的例子就是离散状态的马尔可夫链。
+
+看完了这个例子，应该对马尔科夫链有一定直观的了解了。那现在我们来讲讲什么是马尔科夫链。
+
+\begin{quote}
+考虑一个随机变量\(X=\{X_0,X_1,\cdots,X_t,\cdots\}\)，表示下标t时刻的变量，每个随机变量\(X_t\)的集合取相同，成为状态空间\(\mathcal{S}\)。这个随机序列\(X\)构成\textbf{随机过程}。假设时刻\(t = 0\)时刻随机变量\(P(X_0)=\pi_0\)，成为\textbf{初始分布}。假设在时刻\(t\geq1\)的随机变量\(X_t\)与\(X_{t+1}\)的分布\(P(X_t|X_{t-1})\)，如果有：
+
+\[P(X_t|X_0,X_1,\cdots ,X_{t-1})=P(X_t|X_{t-1}),\  \ t = 1,2, \cdots\]
+
+即时刻t的状态只依赖于时刻t-1的状态，这个性质则成为\textbf{马尔科夫性}，满足上面式子的随机序列\(X\)则成为\textbf{马尔可夫过程}或\textbf{马尔科夫链}。其中上述式子中\(P(X_t|X_{t-1})\)为\textbf{概率转移分布}
+\end{quote}
+
+马尔可夫性的直观解释是\textbf{下一时刻的状态只与现在的状态有关，而与过去的状态无关。}就像天气预报的例子，我们明天下雨的概率取决我们今天的天气状态。当然这个假设是比较粗糙的，但有时候也是合理的，比如我们的语义分析等。
+
+如果马尔可夫链的转移概率分布是与时间无关的，也就是：
+
+\[P_({X_{t+s}|X_{t-1+s}})=P({X_{t}|X}_{t-1}),\ \ \ t = 1,2,\cdots;\ \ s = 1,2,\cdots\]
+
+这种马尔可夫链成为时间齐次的马尔可夫链，这篇文章提到的马尔可夫链都是其次的；同时本文考虑的均为一阶马尔可夫链。
+
+\hypertarget{ux4e8cux79bbux6563ux72b6ux6001ux7684ux9a6cux5c14ux79d1ux592bux94fe}{%
+\paragraph{二、离散状态的马尔科夫链}\label{ux4e8cux79bbux6563ux72b6ux6001ux7684ux9a6cux5c14ux79d1ux592bux94fe}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item ~
+  \hypertarget{ux8f6cux79fbux6982ux7387ux77e9ux9635ux548cux72b6ux6001ux5206ux5e03}{%
+  \subparagraph{转移概率矩阵和状态分布}\label{ux8f6cux79fbux6982ux7387ux77e9ux9635ux548cux72b6ux6001ux5206ux5e03}}
+
+  转移状态的马尔可夫链\(X=\{X_0,X_1,\cdots,X_t,\cdots\}\)，随机变量\(X_t(t=0,1,2,\cdots)\)定义在离散空间\(\mathcal{S}\)，设马尔可夫链在\((t-1)\)时刻状态j，在t时刻状态移动到i，这个转移概率可以写为：
+
+  \[p_{ij} = (X_t=i|X_{t-1}=j),\ \ \ \ \ i=1,2,\cdots;\   j=i,2,\cdots\]
+
+  满足：
+
+  \[p_{ij}\geq0,\ \ \ \sum_{i}p_{ij}=1  \tag{2.1}\]
+
+  因此我们的马尔可夫链转移矩阵：
+\begin{equation}
+  P=
+  \begin{bmatrix} 
+    p_{11} & p_{12} & p_{13} & \cdots\\
+    p_{21} & p_{22} & p_{23} & \cdots\\
+    p_{31} & p_{32} & p_{33} & \cdots\\
+    \cdots & \cdots & \cdots & \cdots\\
+    \end{bmatrix} 
+\end{equation}
+
+  马尔可夫链X在时刻t的概率分布为：
+\begin{equation}
+  \pi(t)=
+  \begin{bmatrix} 
+  \pi_{1}(t)\\
+  \pi_{2}(t)\\
+  \pi_{3}(t)\\
+  \cdots\\
+  \end{bmatrix} 
+\end{equation}
+
+  如果要计算下一时刻的状态，有：
+
+  \[\pi(t)=P\pi(t-1) \tag{2.2}\]
+
+  在这里我们解释下上面的一些方程。假设我们是从状态j转移到状态i，因此状态
+  j
+  （第二个下标）转移到下一时刻所有状态的概率之和为1，因此概率转移矩阵每一列求和的值为1。举个例子，我们今天是下雨天，那么明天是晴天的概率加上雨天的概率必然是1（前文假设天气只有晴雨两种状态）。如果我们今天晴天的概率为0.9，雨天的概率为0.1，那么明天的晴雨的概率则是两者的加权平均。容易证明下一时刻状态\(\pi(t)\)的所有状态和\(\pi_{1}+\pi_{2}+\pi_{3}+\cdots\)也为1：
+\begin{equation}
+  \pi(t)
+  =
+  \begin{bmatrix} 
+  p_{11} & p_{12} & p_{13} & \cdots\\
+  p_{21} & p_{22} & p_{23} & \cdots\\
+  p_{31} & p_{32} & p_{33} & \cdots\\
+  \cdots & \cdots & \cdots & \cdots\\
+  \end{bmatrix} 
+  \begin{bmatrix} 
+  \pi_{1}(t-1)\\
+  \pi_{2}(t-1)\\
+  \pi_{3}(t-1)\\
+  \cdots\\
+  \end{bmatrix} 
+  \\
+  \left\{
+      \begin{array}{l}
+              \pi_{1}(t)=p_{11}\pi_{1}(t-1)+p_{12}\pi_{2}(t-1)+p_{13}\pi_{3}(t-1)+\cdots \\
+              \pi_{2}(t)=p_{21}\pi_{1}(t-1)+p_{22}\pi_{2}(t-1)+p_{23}\pi_{3}(t-1)+\cdots \\
+              \pi_{3}(t)=p_{31}\pi_{1}(t-1)+p_{32}\pi_{2}(t-1)+p_{33}\pi_{3}(t-1)+\cdots
+      \end{array}
+  \right.
+\end{equation}
+
+
+  之后我们对\(\pi\)累加：
+
+  \[\sum_i{\pi_i(t)}=\pi_{1}(t-1)(p_{11}+p_{21}+p_{31}+\cdots)+
+  		       \pi_{2}(t-1)(p_{12}+p_{22}+p_{32}+\cdots)+\cdots\]
+
+  由于\(\sum_{i}p_{ij}=1\)，因此可以得到：
+
+  \[\sum_i{\pi_i(t)}=\sum_t{\pi_i(t-1)}\]
+
+  设初始状态为\(\pi(0)\)，容易得出：
+
+  \[\sum_i{\pi_i(t)}=\sum_t{\pi_i(0)}=1\]
+
+  同时：
+
+  \[\pi(2) = P\pi(1)=P(P\pi(0))=P^2\pi(0)\]
+
+  以此类推，可以得出：
+
+  \[\pi(t) = P^{t}\pi(0)\]
+\item ~
+  \hypertarget{ux5e73ux7a33ux5206ux5e03}{%
+  \subparagraph{平稳分布}\label{ux5e73ux7a33ux5206ux5e03}}
+
+  \begin{quote}
+  设有马尔科夫链\(X = \{X_0,X_1,\cdots,X_t,\cdots\}\)，状态空间为\(\mathcal{S}\)，概率转移矩阵为\(P=(p_{ij})\)，如果存在一个分布\(\pi\)使得：
+
+  \[\pi = P\pi\]
+
+  则称为\(\pi\)马尔可夫链\(X = \{X_0,X_1,\cdots,X_t,\cdots\}\)的平稳分布
+
+  平稳分布\(\pi = (\pi_1,\pi_2,\cdots)\)的充分必要条件是下述方程组的解：
+
+  \[\left\{
+  \begin{aligned}
+  &x_i = \sum_{j}p_{ij}x_j \\
+  &x_i\ge0,\ \ i=1,2,\cdots \\
+  &\sum_{i}x_i=1
+  \end{aligned}
+  \right.\]
+  \end{quote}
+\end{enumerate}
+
+\hypertarget{ux4e09ux8fdeux7eedux72b6ux6001ux7684ux9a6cux5c14ux79d1ux592bux94fe}{%
+\paragraph{三、连续状态的马尔科夫链}\label{ux4e09ux8fdeux7eedux72b6ux6001ux7684ux9a6cux5c14ux79d1ux592bux94fe}}
+
+理解了离散状态的马尔可夫链，那理解连续状态的马尔可夫链就会简单点了。假设连续状态的马尔可夫链为\(X=\{X_0,X_1,\cdots,X_t,\cdots\}\)，随机变量为\(X_t(t=0,1,2,\cdots)\)，在连续空间上的状态空间为\(\mathcal{S}\)，转移概率分布由概率转移核或者转移核表示。离散状态的马尔可夫链是一个二维数组（矩阵），我们的概率转移核也是一个二维分布了。对于任意的\(x\in \mathcal{S}\)，\(A\in \mathcal{S}\)，转移核\(P(x,A)\)定义为：
+
+\[P(x,A)=\int_A p(x,y)dy\]
+
+其中\(p(x,\cdot)\)是概率密度函数，满足\(p(x,\cdot)\geq0\)；
+
+类似于公式\(2.1\)，我们的转移矩阵的列向量，我们对整个状态空间积分：
+
+\[P(x,\mathcal{S})=\int_{\mathcal{S}}p(x,y)dy=1\]
+
+转移核\(P(x,A)\)表示\(x\sim A\)的转移概率：
+
+\[P(X_t=A|X_{t-1}=x)=P(x,A)=\int_A p(x,y)dy\]
+
+这个表示\(x\)状态下转移为\(A\)状态的概率。
+
+其实可以对照下我们离散状态的概率分布。我们计算出来的下一步的概率密度其实是一个离散的分布。而连续状态的马尔可夫链算出来的是一个连续的分布。所以只能计算在\(A\in \mathcal{S}\)上的概率，或者是用一个概率分布来表示下一时刻的结果。
+
+对于连续状态的马尔可夫链，若满足：
+
+\[\pi (A)=\int P(x,A)\pi(x)dx\]
+
+则为马尔可夫链的平稳分布，也可以写为：
+
+\[\pi = P\pi\]
+\subsection{马尔科夫链性质}
+
+\hypertarget{ux4e00ux4e0dux53efux7ea6}{%
+\paragraph{一、不可约}\label{ux4e00ux4e0dux53efux7ea6}}
+
+\begin{quote}
+设有马尔科夫链\(X = \{X_0,X_1,\cdots,X_t,\cdots\}\)，状态空间为\(\mathcal{S}\)，对于任意\(i,j \in \mathcal{S}\),如果存在一个时刻\(t(t>0)\)，满足：
+
+\[P(X_t = i|X_0 = j)>0\]
+
+则成该马尔可夫链是不可约的，否则是可约的。即从时刻0出发，时刻t到达状态\(i\)的概率大于0，即一个不可约的马尔可夫链。
+\end{quote}
+
+直观地讲，在任意时刻出发，或者是任意状态出发，我们都可以到达状态\(i\)，这就是不可约性。如果可约，从状态\(j\)出发，将会在一个或者多个状态下往返，而不会到达状态\(i\)。所以可约的马尔可夫链是没办法遍历所有的状态。
+
+\hypertarget{ux4e8cux975eux5468ux671f}{%
+\paragraph{二、非周期}\label{ux4e8cux975eux5468ux671f}}
+
+\begin{quote}
+设有马尔可夫链\(X=\{X_1,X_2,\cdots,X_t,\cdots\}\)，状态空间是\(\mathcal{S}\)，对于任意状态\(i\in \mathcal{S}\)，如果时刻0从i出发，t时刻返回状态的所有时间长：\(\{t:P(X_t|X_0=i\}>0\)的最大公约数为1，则称为该马尔可夫链\(X\)是\textbf{非周期}的，否则则是周期的。
+\end{quote}
+
+周期性指的是，如果从马尔可夫链的一个状态\(i\)出发，经历了时间\(t\)之后回到状态\(i\)，循环往复；而非周期性指的是我们从状态\(i\)出发，到状态\(i\)的时间不是固定的。如果又周期性，那如某个特定的事件段去观察该马尔科夫链，会发现我们只能观测到一个状态而已。
+
+\begin{quote}
+\textbf{定理：不可约，非周期的有限状态马尔可夫链有唯一平稳分布存在。}
+\end{quote}
+
+\hypertarget{ux4e09ux6b63ux5e38ux8fd4}{%
+\paragraph{三、正常返}\label{ux4e09ux6b63ux5e38ux8fd4}}
+
+\begin{quote}
+有马尔可夫链\(X=\{X_1,X_2,\cdots,X_t,\cdots\}\)，状态空间是\(\mathcal{S}\)，对任意状态\(i,j\in \mathcal{S}\)，定义概率\(p_{ij}^t\)为时刻0从状态\(j\)出发，时刻\(t\)为首次转移到状态\(i\)的概率，即：
+
+\[p_{ij}^t=P(X_t=i,X_s\neq i,s=1,2,\cdots,t-1|X_0=j),t=1,2,\cdots\]
+
+若\(\lim_{t\rightarrow\infty} p_{ij}^t>0\)，则称为正常返的。
+\end{quote}
+
+我们若是一个正常返的马尔可夫链，从任意状态出发，当时间趋于无穷时，首次转移到状态\(i\)的概率不为0。
+
+\begin{quote}
+定理：不可约，非周期且正常反的马尔科夫链有唯一平稳分布的存在。
+\end{quote}
+
+\hypertarget{ux56dbux904dux5386ux5b9aux7406}{%
+\paragraph{四、遍历定理}\label{ux56dbux904dux5386ux5b9aux7406}}
+
+\begin{quote}
+有马尔可夫链\(X=\{X_1,X_2,\cdots,X_t,\cdots\}\)，状态空间是\(\mathcal{S}\)，若马尔科夫链\(X\)是不可约、非周期且正常返的，则该马尔科夫链有唯一平稳分布\(\pi=(\pi_1,\pi_2,\cdots)^T\)，并且转移概率的极限分布是马尔可夫链的平稳分布：
+
+\[\lim_{t\rightarrow \infty}P(X_t=i|X_0=j)=\pi_i,\ i=1,2,\cdots;\ j=1,2,\cdots\]
+
+若\(f(X)\)是定义在状态空间上的函数，且\(E_{\pi}[|f(X)|]<\infty\)，则：
+
+\[P\{ \hat{f_t}\rightarrow E_{\pi}[|f(X)|]\}=1\]
+
+其中：
+
+\[\hat{f_t}=\frac{1}{t}\sum_{s=1}^{t}f(x_s)\]
+
+而\(E_{\pi}[f(X)]=\sum_if(i)\pi_i\)是\(f(X)\)关于平稳分布\(\pi\)的数学期望，即：
+
+\[\hat{f_t} \rightarrow E_{\pi}[f(X)] ,\ \ \ t \rightarrow\infty\]
+
+几乎处处成立（或者以概率1成立）。
+\end{quote}
+
+也就是意味着：满足遍历定理的马尔可夫链，当时间趋近于无穷时，马尔可夫链状态分布趋近于平稳分布，随机变量的函数的样本均值以概率1收敛于该函数的数学期望。这里我们可以认为：样本均值是时间均值，数学期望是空间均值。而遍历定理说明了当时间趋于无穷时，时间均值等于空间均值；而遍历定理的三个条件：不可约，非周期，正常返，让马尔可夫链在时间趋于无穷时到达任意状态的概率不为0。
+
+这里需要理解的是时间均值和空间均值。\(\hat{f_t}\)可以理解为个体在该马尔可夫链上的游走的均值；而数学期望则是在平稳分布后的\(f(X)\)关于平稳分布\(\pi\)的期望，也就是说个体很难抵抗总体内禀的趋势。正如一位长者说过，\textbf{一个人的命运，当然要靠自我奋斗，但也要考虑到历史的进程。}
+
+由于我们不清楚要多少次迭代马尔可夫链才能接近平稳分布，因此采用遍历定理时可以取一个足够大的m，当经过m次迭代之后的分布就认为是平稳分布（也就是所谓的burn-in），这时计算m+1次迭代到n次迭代的均值：
+
+\[\hat{E}f=\frac{1}{n-m}\sum_{i=m+1}^nf(x_i)\]
+
+这个期望称为遍历均值。
+
+\hypertarget{ux4e94ux53efux9006ux9a6cux5c14ux79d1ux592bux94feux548cux7ec6ux81f4ux5e73ux8861ux65b9ux7a0b}{%
+\paragraph{五、可逆马尔科夫链和细致平衡方程}\label{ux4e94ux53efux9006ux9a6cux5c14ux79d1ux592bux94feux548cux7ec6ux81f4ux5e73ux8861ux65b9ux7a0b}}
+
+\begin{quote}
+设有马尔可夫链\(X=\{X_1,X_2,\cdots,X_t,\cdots\}\)，状态空间是\(\mathcal{S}\)，转移概率矩阵为\(P\)，如果状态分布\(\pi=(\pi_1,\pi_2,\cdots)^T\)，对于任意状态\(i,j\in \mathcal{S}\)，对于任意时刻\(t\)满足：
+
+\[P(X_t=i|X_{t-1}=j)\pi_j=P(X_{t-1}=j|X_{t}=i)\pi_i,\ \ imj=1,2,\cdots\]
+
+简写为：
+
+\[p_{ji}\pi_{j}=p_{ij}\pi_i\]
+
+则称此马尔可夫链是可逆马尔可夫链，上式\(p_{ji}\pi_{j}=p_{ij}\pi_i\)为细致平衡方程。
+
+满足细致平衡方程的状态分布\(\pi\)就是该马尔可夫链的平稳分布，因此细致平衡方程也可以写为：
+
+\[P\pi=\pi\]
+\end{quote}

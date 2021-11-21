@@ -1,10 +1,10 @@
-\section{Chapter 5层次化模型}
+\section{层次化贝叶斯模型}
 
-\subsubsection{一、参数化先验分布}
+\subsection{参数化先验分布}
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  先验分布
+  先验分布\cite{gelman_bayesian_2014}
 
   先验分布是由某个未知参数的分布\(\phi\)给出：
 
@@ -61,8 +61,8 @@
   边缘化给出\(\phi\)的贝叶斯估计
 \end{itemize}
 
-\hypertarget{ux4e8cux4e8cux9879ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}{%
-\subsubsection{二、二项分布的分层贝叶斯模型}\label{ux4e8cux4e8cux9879ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}}
+
+\subsection{二项分布的分层贝叶斯模型}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -119,8 +119,8 @@
 
 \end{enumerate}
 
-\hypertarget{ux4e09ux6b63ux6001ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}{%
-\subsubsection{三、正态分布的分层贝叶斯模型}\label{ux4e09ux6b63ux6001ux5206ux5e03ux7684ux5206ux5c42ux8d1dux53f6ux65afux6a21ux578b}}
+
+\subsection{正态分布的分层贝叶斯模型}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -232,12 +232,16 @@ d \mu d \tau\]
 \[\bar{y}_{\cdot j}\sim N(\mu,\tau^2+\sigma^2)\]
 
 因此：
+\begin{equation}
+  p(\mu, \tau \mid y) \propto p(\mu, \tau) 
+  \prod_{j=1}^{J} p\left(\bar{y} _{\cdot j} \mid \mu, \tau^{2}+\sigma_{j}^{2}\right)
+\end{equation}
 
-\[p(\mu, \tau \mid y) \propto p(\mu, \tau) \prod_{j=1}^{J} p\left(\bar{y} _{\cdot j} \mid \mu, \tau^{2}+\sigma_{j}^{2}\right)\]
-
-\[\bar{y}_{\cdot j} \mid \mu, (\tau^{2}+\sigma_{j}^{2}) 
-\sim
-N \left( \mu, \tau^{2} + \sigma_{j}^{2} \right)\]
+\begin{equation}
+  \bar{y}_{\cdot j} \mid \mu, (\tau^{2}+\sigma_{j}^{2}) 
+  \sim
+  N \left( \mu, \tau^{2} + \sigma_{j}^{2} \right)
+\end{equation}
 
 \begin{itemize}
 \item

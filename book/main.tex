@@ -18,6 +18,7 @@
 \usepackage{textcomp} % provide euro and other symbols
 \graphicspath{{Figures/}}%文章所用图片在当前目录下的 Figures目录
 \usepackage{hyperref} % 对目录生成链接，注：该宏包可能与其他宏包冲突，故放在所有引用的宏包之后
+\usepackage{indentfirst} % 空两格
 \usepackage{parskip}
 \usepackage{xurl}
 \usepackage{upquote}
@@ -26,7 +27,8 @@
 	bookmarksnumbered = true, % 书签带章节编号
 	pdftitle = 统计学笔记, % 标题
 	pdfauthor =RuijunShi} % 作者
-\bibliographystyle{acm}% 参考文献引用格式
+%\bibliographystyle{acm}% 参考文献引用格式
+\bibliographystyle{unsrt}
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 \renewcommand{\contentsname}{\centerline{Contents}} %经过设置word格式后，将目录标题居中
 
@@ -46,6 +48,9 @@
 \end{abstract}
 
 \tableofcontents %生成目录
+\newtheorem{definition}{\textbf{\heiti 定义}}[chapter]
+\newtheorem{prop}{\textbf{\heiti 性质}}[chapter]
+\newtheorem{theorem}{\textbf{\heiti 定理}}[chapter]
 
 %导入相关章节
 \include{subchapter/chapter1/chapter1_math.tex}
@@ -54,6 +59,14 @@
 \include{subchapter/Stochastic_Processes/stochastic_processes.tex}
 \include{subchapter/MCMC/MCMC.tex}
 \include{subchapter/Gaussian_processes/gaussian_processes.tex}
+\chapter{统计算法}
+	\section{奇异值分解及主成分分析}
+	\section{退火算法}
+	\section{遗传算法}
+	\section{支持向量机}
+	\section{聚类算法}
+	\section{简单的神经网络}
+
 \bibliography{books} %插入参考文献
 
 \end{document}

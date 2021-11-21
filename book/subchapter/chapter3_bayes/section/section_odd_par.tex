@@ -1,5 +1,5 @@
 \section{贝叶斯单参数估计}
-\subsubsection{一、二项分布估计}
+\subsection{二项分布估计}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -30,15 +30,19 @@ p(y|\theta)=
   后验：
 \end{itemize}
 
-\[p(\theta|y)\propto\theta^y(1-\theta)^{n-y}\sim Beta(y+1,n-y+1)\]
+\begin{equation}
+  p(\theta|y)\propto\theta^y(1-\theta)^{n-y}\sim Beta(y+1,n-y+1)
+\end{equation}
 
 \begin{itemize}
 \item
   预测：
 \end{itemize}
 
-\[Pr(\widetilde y=1|y)=\int_0^1Pr(\widetilde y=1|\theta,y)
-=\int_0^1\theta p(\theta|y)d\theta=E(\theta|y)\]
+\begin{equation}
+  Pr(\widetilde y=1|y)=\int_0^1Pr(\widetilde y=1|\theta,y)
+  =\int_0^1\theta p(\theta|y)d\theta=E(\theta|y)
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -81,8 +85,7 @@ p(y|\theta)=
 
 数据很大的时候可以用正态分布近似后验分布
 
-\hypertarget{ux4e8cux6b63ux6001ux5206ux5e03ux53c2ux6570ux4f30ux8ba1}{%
-\subsubsection{二、正态分布参数估计}\label{ux4e8cux6b63ux6001ux5206ux5e03ux53c2ux6570ux4f30ux8ba1}}
+\subsection{正态分布参数估计}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -95,19 +98,29 @@ p(y|\theta)=
   似然：
 \end{itemize}
 
-\[p(y|\theta)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[-\frac{1}{2\sigma^2}(y-\theta)^2\right]\sim N(\theta,\sigma^2)\]
+\begin{equation}
+  p(y|\theta)=\frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(y-\theta)^2\right]
+  \sim N(\theta,\sigma^2)
+\end{equation}
+
 
 \begin{itemize}
 \item
   先验：
 
-  \[p(\theta)\propto\exp\left(-\frac{1}{2\tau_0^2}(\theta-\mu_0)^2\right)
-  \sim N(\mu_0,\tau_0^2)\]
+\begin{equation}
+  p(\theta)\propto\exp\left(-\frac{1}{2\tau_0^2}(\theta-\mu_0)^2\right)
+  \sim N(\mu_0,\tau_0^2)
+\end{equation}
 \item
   后验：
 
-  \[p(\theta|y)\propto\exp\left(-\frac{1}{2\tau_1^2}(\theta-\mu_1)^2\right)
-  \sim N(\mu_1,\tau_1)\]
+\begin{equation}
+  p(\theta|y)
+  \propto\exp\left(-\frac{1}{2\tau_1^2}(\theta-\mu_1)^2\right)
+  \sim N(\mu_1,\tau_1)
+\end{equation}
 
   其中：
 
@@ -121,15 +134,17 @@ p(y|\theta)=
 \item
   预测：
 
-  \begin{align*}
-  p(\widetilde y|y)&=\int p(\widetilde y | \theta)p(\theta|y)d\theta\\
-  &\propto
-  \int\exp\left(-\frac{(\widetilde y - \theta)^2}{2\sigma^2}\right)
-  \exp \left(-\frac{(\theta-\mu_1)^2}{2\tau_1^2}\right)d\theta
-  \\
-  E(\widetilde y|\theta)&=\theta\\
-  D(\widetilde y|\theta)&=\sigma^2+\tau^2_1
-  \end{align*}
+\begin{equation}
+  \begin{aligned}
+    p(\widetilde y|y)&=\int p(\widetilde y | \theta)p(\theta|y)d\theta\\
+    &\propto
+    \int\exp\left(-\frac{(\widetilde y - \theta)^2}{2\sigma^2}\right)
+    \exp \left(-\frac{(\theta-\mu_1)^2}{2\tau_1^2}\right)d\theta\\
+    E(\widetilde y|\theta)&=\theta\\
+    D(\widetilde y|\theta)&=\sigma^2+\tau^2_1
+    \end{aligned}
+\end{equation}
+
 \item
   多个相互独立数据：
 \end{itemize}
@@ -171,9 +186,12 @@ p(y|\theta)=
   似然：
 \end{itemize}
 
-\[p(y|\sigma^2)\propto\sigma^{-n}\exp\left(-
+\begin{equation}
+  p(y|\sigma^2)\propto\sigma^{-n}\exp\left(-
 \frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\theta)^2
-\right)=(\sigma^2)^{-n/2}e^{-\frac{n}{2\sigma^2}v}\]
+\right)=(\sigma^2)^{-n/2}e^{-\frac{n}{2\sigma^2}v}
+\end{equation}
+
 
 其中：
 
