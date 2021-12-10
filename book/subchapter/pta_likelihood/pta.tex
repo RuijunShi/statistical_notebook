@@ -1,0 +1,64 @@
+\chapter{Gaussian process and likelihood model}
+
+Now that we have defined all of our noise terms, we will write down the likelihood function and go over some computational tricks to make it tractable.
+
+First we will assume (and epmirical studies show this is a good assumption) that the measurement uncertainties are gaussian distributed with covariance matrix $N$. If we not write the residuals using the information above then we have
+
+首先我们假设测量误差是一个协方差为 $N$ 的正态分布，时间残差$\delta \tau$可以写为：\cite{arzoumanian_nanograv_2016}
+\begin{equation}
+	\delta \tau = M\epsilon + F_{\rm red}a_{\rm red} + M_{\rm DM}d_{\rm DM} + F_{\rm DM}a_{\rm DM} + Uj + n
+\end{equation}
+这里$n$是白噪声项，可以写为$\langle n n^T \rangle = N$
+
+where $n$ is the white noise with $\langle n n^T\rangle=N$. 
+
+There are two ways to think about the likelihood function, the Basis picture and the Kernel picture. In the Basis picture we explicitly model the residuals as above and then impose Gaussian priors on the amplitudes $\{ \epsilon, a_{\rm red}, d_{\rm DM}, a_{\rm DM}, j \}$. In the kernel picture we just model the residuals using the full covariance matrix defined by the white noise and these Gaussian priors. In the Bayesian sense, the Kernel comes from marginalizing the basis picture likelihood over the basis function amplitudes. 
+
+贝叶斯方法先确定一个噪声模型，对于$\{ \epsilon, a_{\rm red}, d_{\rm DM}, a_{\rm DM}, j \}$做高斯先验假设构建likelihood function。Kernel方法使用高斯先验的白噪声及其协方差矩阵构建likelihood function。
+
+Now we have shown that there are certain physical or statistical reasons to assume certain Gaussian priors on $\{ a_{\rm red}, a_{\rm DM}, j \}$; however, we have no such priors for the timing model or quadratic DM parameters and would like to use uniform priors. This can be accomodated by using Gaussian priors with infinite variance (it works!, you'll see). With that in mind let us simplify the notation as 
+
+$\{ a_{\rm red}, a_{\rm DM}, j \}$使用高斯先验分布有物理和统计上的原因。然而对于timing model或者是quadratic DM parameters我们没有类似的的先验分布，因此我们使用先验分布，先验分布可以使用一个方差无穷大的高斯先验来实现。这样可以简化我们的先验分布：
+$$
+T = [M\,\, F_{\rm red}\,\, M_{\rm DM}\,\, F_{\rm DM}\,\, U];
+\quad\quad b = \begin{bmatrix} \epsilon \\ a_{\rm red} \\ d_{\rm DM} \\ a_{\rm DM} \\ j\end{bmatrix}
+\quad \quad B = 
+\begin{bmatrix}  
+\infty & & & &\\
+& \varphi & & & \\
+& & \infty & & \\
+& & & \varphi_{\rm DM} \\
+& & & & J
+\end{bmatrix}
+$$
+
+and the residuals and covariance matrix are now
+
+残差和协方差矩阵可以表示为：
+$$\delta\tau = Tb + n$$
+$$C = N + K = N + TBT^T$$
+
+We define the vector of paramters that characterize the Gaussian priors (such as amplitude and spectral index of red noise or DM spectrum, and variance of ECORR) as $\phi$, so the matrix $B=B(\phi)$ and $N=N(\phi)$. In this case the likelihoods are
+
+这里我们可以写出我们的参数向量。描述高斯先验分布的参数向量定义为$\phi$，以及矩阵$B=B(\phi)$ and $N=N(\phi)$
+
+* Basis Picture:
+$$ p(\delta\tau|b,\phi) = \frac{\exp{\bigg[-\frac{1}{2}(\delta\tau-Tb)^TN^{-1}(\delta\tau-Tb)\bigg]}}{\sqrt{ \det{2\pi N}}}\frac{\exp{\bigg[-\frac{1}{2}b^TB^{-1}b\bigg]}}{\sqrt{\det{2\pi B}}}$$
+
+* Kernel Picture
+$$p(\delta\tau|\phi)=\frac{\exp{\bigg[-\frac{1}{2}\delta\tau^T\left(N+K\right)^{-1}\delta\tau\bigg]}}{\sqrt{\det{2\pi(N+K)}}} $$
+
+In the Kernel picture we use the Woodbury Lemma to compute the inverse and determinant of $(N+TBT^T)$
+
+
+\begin{equation}
+	\begin{aligned}
+	(N+TBT^T)^{-1} &= N^{-1} - N^{-1}T\left(B^{-1}+T^TN^{-1}T \right)^{-1}T^TN^{-1} \\
+	\det{(N+TBT^T)} &= \det{(N)}\det{(B)}\det{(B^{-1}+T^TN^{-1}T)}
+	\end{aligned}
+\end{equation}
+
+
+In case you were worried about our infinite variance trick notice that $\det{(B)} = 1/\det{(B^{-1})}$ and all other dependence on $B$ comes in the form of an inverse.
+
+For a given pulsar and noise model $B$ may be a $1,000\times1,000$ matrix whereas the full covariance matrix (N+K) could be on the order of $30,000\times30,000$. This means that we cut the computation time by over a factor of 1000!

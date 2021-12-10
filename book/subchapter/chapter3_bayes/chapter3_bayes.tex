@@ -1,10 +1,19 @@
 \chapter{贝叶斯统计}
 \section{贝叶斯定理}
-1. 贝叶斯公式
+贝叶斯定理和贝叶斯参数估计是在计算天文学课上的笔记，缺少例子解释。这部分尽量找一些比较容易理解的例子。上来就直接讲贝叶斯定理和贝叶斯参数估计是很晦涩难懂的。
+
+贝叶斯公式
+首先我们回忆下条件概率的定义，条件B下A的概率为：$$ P(A|B)=\frac{P(AB)}{P(B)} $$我们反过来，在A条件下B的概率为：$$P(B|A)=\frac{P(AB)}{P(A)}$$
+我们发现A,B的联合概率分布是相等量。因此移项可得：
+$$P(A|B)P(B)=P(B|A)P(A)$$
+如果我们很容易得到B条件下A的概率，那么我们要算A条件下B的概率就可以用上面的公式：
+$$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$$
+若有n个样本，则贝叶斯公式为：
 \begin{equation}
     P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^{n}P(A|B_i)P(B_j)}
     =\frac{P(A|B_i)P(B_i)}{P(A)}
 \end{equation}
+
 先验：$P(B)$
 
 似然:  $P(A|B)$
@@ -13,14 +22,25 @@
 
 证据（归一化）:  $P(A)$
 
-2. 贝叶斯公式含义：通过数据推算模型参数的概率。即：
+这个公式是不是很难懂。在这里举个例子：有三个门，有一头牛两头羊。小明想养牛耕地。小明选择了其中一扇门，主持人会打开一个一定是羊的门，这时候小明可以改变自己的选择，玩家要不要改变自己的策略呢？
+
+当第一次选择时候，三个门里面有牛的概率均为1/3，因此不换门获得牛的概率为1/3；开门后我后面得到牛的概率不是1/2吗？等等，这其实有点不对，因为主持人知道了三个门分别是什么。由于主持人一定会打开羊的门（主持人知道），如果换门有三种情况：
+\begin{itemize}
+    \item 选择的是羊，换门得到牛
+    \item 选择的是羊，换门得到牛
+    \item 选择的是牛，换门得到羊
+\end{itemize}
+那这么算下来换门的获胜的概率是2/3！我们从贝叶斯的角度上看，当主持人没有开门的时候，假设我获得牛的概率为$P(cowA)=1/3$; 当主持人打开门的时候，假设牛在A门，那主持人一定会选择B或C门打开,这时候主持人打开B门的概率为：$P(openB|cowA)=1/2$；如果牛在C门后，那么主持人只会选择把B打开，$P(OpenB|cowC)=1$；这时候我们可以计算主持人打开门B之后牛在A门的后验:
+$$ p(cowC|openB) = \frac{p(openB|cowA)p(cowA)}{p(openB|cowA)p(cowA)+p(openB|cowC)p(cowC)}=1/3 $$
+由于牛在A门和C门属于互斥事件，因此在打开门B之后牛出现在C门的概率为2/3.因此换门是更好的选择。从感性上理解，由于主持人打开了B门，也就是假设出现在A门（我们选的门）时候的的概率p(cowA)是1/2；而假设牛出现的C门的概率能达到1，因此有没有牛的先验概率已经从主持人的行为中“学习”到了。贝叶斯定理的精髓在于让已经得到的信息表达在先验概率之中，这也非常像我们人脑学习知识的过程。比如我们发现云很多时候大下雨情况非常多，这就是我们的先验，我们可以把自己的认识加载到先验之中，达到学习的目的。
+
+贝叶斯公式含义：通过数据推算模型参数的概率。即：
 \begin{equation}
     P({\rm{Model}} (\theta)|{\rm{Data}})=
     P({\rm{Data}}|{\rm{Model}}(\theta))P(\theta)
 \end{equation}
+贝叶斯统计的优势：将这个某种程度上是主观性的信息明确表达在先验概率中，而不是隐藏在没有明确指出的假设中; 让数据说话，减少主观性的先验概率。
 
-
-3. 贝叶斯统计的优势：将这个某种程度上是主观性的信息明确表达在先验概率中，而不是隐藏在没有明确指出的假设中; 让数据说话，减少主观性的先验概率。
 %单变量贝叶斯参数估计
 \input{subchapter/chapter3_bayes/section/section_odd_par.tex}
 %多变量贝叶斯参数估计
@@ -29,6 +49,46 @@
 \input{subchapter/chapter3_bayes/section/section_Hier_bayes_model.tex}
 
 \section{贝叶斯回归}
+\subsection{最小二乘法}
+
+\subsection{贝叶斯回归的原理}
+
 
 \section{贝叶斯模型选择}
+\subsection{Bayes Factor and Odd Ratio}
+%在模型选择上贝叶斯因子有非常重要的作用，贝叶斯因子说明数据更加偏向哪个假设。这部分参考了MIT的Jeremy Orloff and Jonathan Bloom\thanks{\href{MIT：Jeremy Orloff and Jonathan Bloom}{https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading12b.pdf}}的讲义
+\begin{definition}{贝叶斯因子\\}
+    在观测数据d中选择两个模型假设$H_1$和$H_2$，其参数为$\theta_1$和$\theta_2$，贝叶斯因子为：
+    \begin{equation}
+        \mathcal{B}_{12}=\frac{p(d|H_1(\theta_1))}{p(d|H_2(\theta_2))} \label{bayes_factor}
+    \end{equation}
+    下面把贝叶斯因子（Bayes factor）缩写为BF。
+\end{definition}
+当$\mathcal{B}_{12}>1$时支持假设$H_1$，反之支持假设$H_2$。当然BF也有相应的判据，下面会慢慢介绍。
+\begin{definition}{odds ratio\\}
+    对于事件E和事件E的补集$E^c$，其概率比值：
+    \begin{equation}
+        \mathcal{O}(E)=\frac{P(E)}{P(E^c)}
+    \end{equation}
+    称为\textrm{odds ratio}（下面缩写为OR）。从数据分析的角度上说，有两个模型假设$H_1$和$H_2$，OR为：
+    \begin{equation}
+        \mathcal{O}_{12}=\frac{p(H_1|d)}{p(H_2|d)} \label{ORs}
+    \end{equation}
+\end{definition}
+OR和BF的关系是什么呢？结合BF公式\ref{bayes_factor}我们把OR展开：
+\begin{equation}
+    \begin{aligned}
+        \mathcal{O}_{12} &= \frac{p(H_1|d)}{p(H_2|d)}\\
+        &= \frac{p(d|H_1)p(H_1)}{p(d|H_2)p(H_2)}\\
+        &= \mathrm{BF}\cdot\frac{p(H_1)}{p(H_2)}\\
+        &= \mathrm{BF}\cdot \mathrm{prior\ odds}
+    \end{aligned}
+\end{equation}
+因此Odds ratio是Bayes factor乘先验比。\\
+
+
+
+
+\subsection{奥卡姆剃刀}
+如无必要，勿增实体
 \section{费舍尔信息矩阵Fisher Information}

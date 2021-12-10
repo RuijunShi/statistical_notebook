@@ -41,16 +41,13 @@
 	\thispagestyle{empty}
 % 摘要abstract
 \begin{abstract}
-	简单的统计学笔记，主要是在天文学，特别是引力波和pulsar timing中遇到的统计学，现在没写多少内容。
-	缓慢更新中\cite{jaranowski_analysis_2009}。
-	同时这也是我第一次用latex编写书籍，学习过程艰难啊。有错误请大家指出！
-	latex资料参考\href{https://github.com/Ali-loner/Ali-loner.github.io}{https://github.com/Ali-loner}
+	简单的统计学笔记，主要是在天文学，特别是引力波和pulsar timing中遇到的统计学，现在没写多少内容。目前图片也没有绘制，等有空再说吧！同时也在缓慢更新中。内容相对比较基础。这也是我第一次用latex编写书籍，学习过程艰难啊。有错误请大家指出！基本上都是在自己不想读文献的时候就写写笔记，不知不觉的积累。不过目前的编排非常混乱，表述不够精炼，逻辑感不强，也有重复造轮子的嫌疑。希望慢慢改进吧。
 \end{abstract}
 
 \tableofcontents %生成目录
-\newtheorem{definition}{\textbf{\heiti 定义}}[chapter]
-\newtheorem{prop}{\textbf{\heiti 性质}}[chapter]
-\newtheorem{theorem}{\textbf{\heiti 定理}}[chapter]
+\newtheorem{definition}{\textbf{\setlength{\parindent}{2em} \heiti 定义}}[chapter]
+\newtheorem{prop}{\textbf{\setlength{\parindent}{2em} \heiti 性质}}[chapter]
+\newtheorem{theorem}{\textbf{\setlength{\parindent}{2em} \heiti 定理}}[chapter]
 
 %导入相关章节
 \include{subchapter/chapter1/chapter1_math.tex}
@@ -66,7 +63,7 @@
 	\section{支持向量机}
 	\section{聚类算法}
 	\section{简单的神经网络}
-
+\include{subchapter/pta_likelihood/pta.tex}
 \bibliography{books} %插入参考文献
 
 \end{document}

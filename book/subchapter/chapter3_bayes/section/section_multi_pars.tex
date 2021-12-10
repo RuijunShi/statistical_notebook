@@ -61,7 +61,7 @@
   &\propto(\sigma^2)^{-\frac{n+1}{2}}\exp\left(
   -\frac{(n-1)s^2}{2\sigma^2}
   \right)\\
-  &\sim Inv-\chi^2(n-1,s^2)
+  &\sim \textrm{Inv}-\chi^2(n-1,s^2)
   \end{aligned}
 \end{equation}
 
@@ -86,28 +86,26 @@
 \subsection{共轭先验分布}
 
 \begin{itemize}
-\item
-  先验分布：
+\item 先验分布：
 
   \(\mu|\sigma^2 \sim N(\mu_0,\sigma^2/\kappa_0)\)
 
-  \(\sigma^2 \sim Inv-\chi^2(\nu_0,\sigma^2_0)\)
-\item
-  联合先验分布
+  \(\sigma^2 \sim \rm Inv-\chi^2(\nu_0,\sigma^2_0)\)
 
+\item 联合先验分布
   \begin{align*}
   p(\mu,\sigma^2)
   &=p(\mu|\sigma^2)p(\sigma^2)\\
   &\propto N-Inv-\chi^2(\mu_0,\sigma^2_0/\kappa_0\ ;\ \nu_0,\sigma^2_0 )
   \end{align*}
-\item
-  似然分布
+
+\item 似然分布
 
   \[p(y|\mu,\sigma^2)=\sigma^{-n}\exp \left(
   -\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\mu)^2
   \right)\]
-\item
-  联合后验分布
+
+\item 联合后验分布
 \begin{equation}
   \begin{aligned}
     p\left(\mu, \sigma^{2} \mid y\right) 
@@ -117,19 +115,17 @@
   \end{aligned}
 \end{equation}
 
-
 \end{itemize}
 
 其中参数为：
-\begin{equation}
-  \begin{array}{c}
-    \mu_{n}   = \frac{\kappa_{0}}{\kappa_{0}+n} \mu_{0}+\frac{n}{\kappa_{0}+n} \bar{y}\\
-    \kappa_{n}= \kappa_{0}+n \\
-    \nu_{n}   = \nu_{0}+n \\
-    \nu_{n} \sigma_{n}^{2}=\nu_{0} \sigma_{0}^{2}+(n-1) s^{2}+\frac{\kappa_{0} n}{\kappa_{0}+n}\left(\bar{y}-\mu_{0}\right)^{2}
-    \end{array}
-\end{equation}
-
+\begin{subequations}
+  \begin{align}
+    \mu_{n}   &= \frac{\kappa_{0}}{\kappa_{0}+n} \mu_{0}+\frac{n}{\kappa_{0}+n} \bar{y}\\
+    \kappa_{n} &= \kappa_{0}+n \\
+    \nu_{n}   &= \nu_{0}+n \\
+    \nu_{n} \sigma_{n}^{2}&=\nu_{0} \sigma_{0}^{2}+(n-1) s^{2}+\frac{\kappa_{0} n}{\kappa_{0}+n}\left(\bar{y}-\mu_{0}\right)^{2}
+    \end{align}
+\end{subequations}
 
 \begin{itemize}
 \item

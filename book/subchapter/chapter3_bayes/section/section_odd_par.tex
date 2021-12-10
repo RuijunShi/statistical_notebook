@@ -1,11 +1,7 @@
 \section{贝叶斯单参数估计}
 \subsection{二项分布估计}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{无信息先验}
-\end{enumerate}
+\subsubsection{\textbf{无信息先验}}
 
 \begin{itemize}
 \item
@@ -44,11 +40,7 @@ p(y|\theta)=
   =\int_0^1\theta p(\theta|y)d\theta=E(\theta|y)
 \end{equation}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{有信息先验}
-\end{enumerate}
+\subsubsection{\textbf{有信息先验}}
 
 \begin{itemize}
 \item
@@ -213,6 +205,6 @@ p(y|\theta)=
         &\propto (\sigma^2)^{-((n+\upsilon_0)/2+1)}\exp\left(
         -\frac{1}{2\sigma^2}(\upsilon_0\sigma_0^2+n\upsilon)
         \right)\\
-        &\sim Inv-\chi^2(\upsilon_0+n,\frac{\upsilon_0\sigma_0^2+n\upsilon}{\upsilon_0+n})
+        &\sim \textrm{Inv}-\chi^2(\upsilon_0+n,\frac{\upsilon_0\sigma_0^2+n\upsilon}{\upsilon_0+n})
         \end{aligned}
 \end{equation}

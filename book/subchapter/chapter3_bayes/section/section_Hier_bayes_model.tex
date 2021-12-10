@@ -22,7 +22,7 @@
 
   \begin{itemize}
   \item
-    联合后验 : \(p(\phi,\theta|y)=p(y|\theta)p(\theta|\phi)p(\phi)\)
+    联合后验 : \(p(\phi,\theta|y)\propto p(y|\theta)p(\theta|\phi)p(\phi)\)
   \item
     条件后验：\(p(\theta|\phi,y)\)
   \item
@@ -30,10 +30,8 @@
 
     \[p(\phi|y)=\frac{p(\theta,\phi|y)}{p(\theta|\phi,y)}\]
   \end{itemize}
-\item
-  层次化贝叶斯完整表述
-\end{enumerate}
 
+\item 层次化贝叶斯完整表述
 \begin{equation}
   \begin{aligned}
     p(\phi,\theta|y)
@@ -42,13 +40,8 @@
     &=p(y|\theta)p(\theta|\phi)p(\phi)
     \end{aligned}
 \end{equation}
-
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  层次化贝叶斯计算步骤
-\end{enumerate}
+由于likelihood中$p(y|\phi,\theta)$只取决于$\theta$，因此超参数$\phi$只通过参数$\theta$影响y。
+\item 层次化贝叶斯计算步骤
 
 \begin{itemize}
 \item
@@ -60,22 +53,20 @@
 \item
   边缘化给出\(\phi\)的贝叶斯估计
 \end{itemize}
-
+\end{enumerate}
 
 \subsection{二项分布的分层贝叶斯模型}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\item
-  \(y_i\)先验（组内模型） \(y_j \sim Bin(n_j,\theta_j)\)
-\item
-  \(\theta_j\)先验（组间模型）：\(\theta_j\sim Beta(\alpha,\beta)\)
-\item
-  联合先验：\(p(\alpha,\beta,\theta)=p(\alpha,\beta)p(\theta|\alpha,\beta)\)
-\item
-  似然：\(p(y|\theta,\alpha,\beta)\)
-\item
-  联合后验：\(p(\theta,\alpha,\beta|y)\)
+\item \(y_i\)先验（组内模型） \(y_j \sim Bin(n_j,\theta_j)\)
+\item \(\theta_j\)先验（组间模型）：\(\theta_j\sim Beta(\alpha,\beta)\)
+\item 联合先验：
+      \(p(\alpha,\beta,\theta)=p(\alpha,\beta)p(\theta|\alpha,\beta)\)
+\item 似然：
+      \(p(y|\theta,\alpha,\beta)\)
+\item 联合后验：
+      \(p(\theta,\alpha,\beta|y)\)
 
 \begin{equation}
   \begin{aligned}
@@ -126,7 +117,7 @@
 \def\labelenumi{\arabic{enumi}.}
 \item
   \textbf{数据结构}
-\end{enumerate}
+
 
 假设\(J\)个独立试验，每个实验都由\(\theta_j\)给出其参数估计，估计\(n_j\)个\(i.i.d\)正态分布的数据点\(y_{ij}\)，每个点方差为\(\sigma^2\)：
 
@@ -153,11 +144,10 @@
 由于 \(\sigma\) 是已知的，下面所有的分布都是在 \(\sigma\)
 已知情况下成立。
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+
 \item
   \textbf{层次化模型：无信息先验}
-\end{enumerate}
+
 
 \(\theta\)是从参数\((\mu,\tau)\)中抽取：
 
@@ -281,8 +271,7 @@ d \mu d \tau\]
     \end{aligned}
 \end{equation}
 
+从后往前采样，即先算出\(\tau\)的后验，然后依次采样算出\(\mu\)的后验，超参数联合后验，\(\theta\)的条件后验，联合后验等。
 
-\begin{itemize}
-\item
-  从后往前采样，即先算出\(\tau\)的后验，然后依次采样算出\(\mu\)的后验，超参数联合后验，\(\theta\)的条件后验，联合后验等。
-\end{itemize}
+
+\end{enumerate}

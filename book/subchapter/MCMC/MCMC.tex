@@ -1,7 +1,101 @@
-\chapter{MCMC}
-\input{subchapter/MCMC/section/section_montecarlo.tex}
+\chapter{MCMC与采样方法}
 \input{subchapter/MCMC/section/section_montecarlo.tex}
 \input{subchapter/MCMC/section/section_mcmc_principle.tex}
 \input{subchapter/MCMC/section/section_MH&gibbs.tex}
 \section{Nested采样}
-\section{数值贝叶斯方法}
+对于evidence来说要进行高维积分，这是一个非常大的开销，因此还有另外的比较常用的MCMC积分：MultiNest 算法。一个模型的参数空间的活动的点先填充先验；
+
+\section{Savage-Dickey density ratio}
+我们发现Bayes Factor的计算比较困难，需要多重积分，因此使用\textbf{Savage-Dickey density ratio}的方式估计Bayes Factor。
+
+我们考虑一个包含假设$\mathcal{H}_1$和假设$\mathcal{H}_2$的嵌套的模型，这个模型有共同参数$\theta$。假设$\mathcal{H}_1$有自己特有的参数A，可以通过设置$A=0$得到假设$\mathcal{H}_2$：
+\begin{equation}
+    p(d|A=0,\theta;\mathcal{H}_1)=p(d|\theta;\mathcal{H}_2)
+\end{equation}
+当A=0时，后验密度为：
+\begin{equation}
+    \begin{aligned}
+        p(A=0|d;\mathcal{H}_1)&=\int p(A=0,\theta|d;\mathcal{H}_1)\mathrm{d}^n\theta\\
+        &=\int \frac{p(d|A=0,\theta;\mathcal{H}_1)p(A=0)p(\theta)}{p(d|\mathcal{H}_1)}\mathrm{d}^n\theta\\
+        &=\int \frac{p(d|\theta;\mathcal{H}_2)p(A=0)p(\theta)}{p(d|\mathcal{H}_1)}\mathrm{d}^n\theta\\
+        &=\frac{p(A=0)}{p(d|\mathcal{H}_1)}\int p(d|\theta;\mathcal{H}_2)p(\theta)\mathrm{d}^n\theta\\
+        &=\frac{p(d|\mathcal{H}_2)}{p(d|\mathcal{H}_1)}p(A=0)
+    \end{aligned}
+\end{equation}
+因此Bayes Factor为：
+\begin{equation}
+    \mathcal{B}_{12}=\frac{p(d|\mathcal{H}_1)}{p(d|\mathcal{H}_2)}=\frac{p(A=0)}{p(A=0|d;\mathcal{H}_1)}
+\end{equation}
+相应的就是A=0时的先验和归一化后验之比。在写程序的时候$A=0$会导致许多的错误，因此一般会把A设置成一个非常小的数，比如在pulsar timing的探测中，会使用$\log_{10}A_{\mathrm{low}}=-18$，这个振幅远远低于pulsar的固有噪声。
+
+\section{Product space sampling}
+很多时候我们给出的后验采样是很难采样到A=0时的后验概率分布，因此需要\textbf{Product space sampling}。原理是通过增加一个超参数$n$进行odds ratio的计算。我们假设有n个待选的模型$H_i$，其中$i\in \{1,\cdots,n\}$。我们把Bayes定理写为：
+\begin{equation}
+    p(\theta|d,H_n)=\frac{p(d|\theta,H_n)p(\theta|H_n)}{p(d|H_n)}\equiv \frac{\mathcal{L}\pi}{\mathcal{Z}}
+\end{equation}
+其中$\mathcal{L}$为likelihood function，$\pi$为先验分布，$\mathcal{Z}$为的evidence，可以写为：
+\begin{equation}
+    \mathcal{Z}=\int_{\textrm{all }\theta}\mathcal{L}(\theta)\pi(\theta)\textrm{d}\theta
+\end{equation}
+对于我们的假设（或者说模型）$H_i,i\in{1,\cdots,n}$的后验概率为：
+\begin{equation}
+    \begin{aligned}
+        p(H_i|d)&=\frac{p(d|H_i)p(H_i)}{p(d)}\\
+        &=\frac{\int_{\theta_i} p(d|\theta_i,H_i)p(\theta_i)\textrm{d}\theta_i p(H_i)}{p(d)}\\
+        &=\frac{\mathcal{Z}_i\pi_{H_i}}{p(d)}
+    \end{aligned}
+\end{equation}
+根据OR的定义[\ref{ORs}]，我们的后验ORs可以写为：
+\begin{equation}
+    \ln \mathcal{O}_{ji}=\mathcal{P}_{ji}
+    =\ln\left[ \frac{p(H_j|d)}{p(H_i|d)} \right]
+    =\ln\left(\frac{\mathcal{Z}_j}{\mathcal{Z}_i}\right)+\ln \left(\frac{\pi_{H_j}}{\pi_{H_i}}\right)
+\end{equation}
+当$\pi_{H_i}=\pi_{H_j}$时，BF=OR。注意这里的ORs和前面定义的ORs是互为倒数的。
+
+这样计算ORs或者BF的时候要计算evidence，但这个计算成本太高了，我们可以试着转换为我们熟悉的MCMC采样。我们的假设模型$H_n(n\in \{1,\cdots,N\})$可以考虑合并为一个hypermodel。对于模型$H_n$来说，下表n就像一个开关。而各个模型的参数$\theta_n$可以合并为一个参数向量$\theta$。对于模型选择参数n可以连续化，再整数化转为整数参数n。
+
+一般的，有两个不同的模型假设，其参数向量：$\theta_n$和$\theta_{n'}$，一般这两个参数的维度不一样。如果有$\theta_n \subset \theta_{n+1}$这种情况，一般会考虑nested model，并使用reversible-jump Markov chain Monte Carlo (RJMCMC)实现不同维度空间的转换。这里介绍另外的方法。我们需要知道假设N的先验是已知的，对参数空间$\theta$加入一个新的参数n，得到整体参数空间$(\theta,n)$，这个参数空间的先验已经确定下来了。这样我们就可以使用传统的MCMC采样方法或者是nested sampling。对于任意给定的参数n，联合参数空间可以划分为假设$H_n$的参数$\theta_n$和不属于其假设的参数$\phi_n$。也就是说：
+\begin{equation}
+    p(d|n,\theta)=p(d|n,\theta)
+\end{equation}
+在我们规定的hypermodel $\mathcal{H}$下会将参数$\theta_n$传递到假设$H_n$；而剩下的参数$\phi_n$将会被忽略，在参数空间上赋予一个常数值。如果参数空间维度比较大的情况下，很可能出现参数重叠的情况，这里我们考虑nested 模型。
+
+当参数空间$(\theta,n)$获得到一组后验分布时，我们可以计算归一化后验分布：
+\begin{equation}
+    p(n|d,\mathcal{H})=\int p(\theta,n|d,\mathcal{H})\textrm{d}\theta
+    =\frac{1}{\mathcal{Z}_{\mathcal{H}}}\int\mathcal{L}(\theta,n)\pi(\theta,n)\textrm{d}\theta
+\end{equation}
+$\mathcal{Z}_{\mathcal{H}}$是Hypermodel的evidence。先验可以写为：
+\begin{equation}
+    \pi(\theta|n)=\pi(\theta_n|n)\pi(\phi_n)\pi(n)
+\end{equation}
+为了让推导更加清晰，在这里展开得到关于参数空间$(\theta,n)$的后验分布：
+\begin{equation}
+    p(n,\theta|d)=\frac{p(d|n,\theta_n)p(\theta_n|n)p(\phi_n|\theta_n,n)p(n)}{p(d)}
+\end{equation}
+实际上分子第一项对应的是关于模型n的likelihood function；而分母项则是hypermodel的evidence $\mathcal{Z}_{\mathcal{H}}$。对参数$\theta$积分得到：
+\begin{equation}
+    p(n|d,\mathcal{H})=\frac{\pi(n)}{\mathcal{Z}_{\mathcal{H}}}\int\mathcal{L}(\theta_n)\pi(\theta_n|n)\textrm{d}\theta  \label{post_n}
+\end{equation}
+在这里我们利用先验的归一化：$\int \textrm{d}\phi_n=1$。我们注意到\ref{post_n}是正是模型$\mathcal{H}_n$的evidence。因此我们可以得到：
+\begin{equation}
+    \pi(n)\mathcal{Z}_n=\mathcal{Z}_{\mathcal{H}}p(n|d,\mathcal{H})
+\end{equation}
+因此ORs可以写为：
+\begin{equation}
+    \ln \mathcal{O}_{ji} = \ln\left[\frac{p(n=j|d,\mathcal{H})}{p(n=i|d,\mathcal{H})}\right]
+\end{equation}
+我们发现关于hypermodel的evidence就被约掉了，因此避免了繁杂的evidence的计算。
+这个方法的核心算法\cite{godsill_relationship_2001,hee_bayesian_2016}：
+\begin{equation}
+    \theta_i \sim p(\theta_i|\phi_i,n,d)\propto 
+    \begin{cases}
+        p(y|n,\theta_n)p(\theta_n|n),i=n\\
+        p(\theta_n|\phi_n,n),i\neq n,\\
+    \end{cases}
+\end{equation}
+\begin{equation}
+    k\sim p(n|\theta,d)\propto p(d|n,\theta_n)p(\theta_n|n)p(\phi_n|\theta_n,n)p(n)
+\end{equation}
+当然在这里我们的evidence只是一个归一化常数，当我们计算ORs或者BF的时候，hypermodel的evidence会被除掉，因此可以不用计算evidence的积分，而采用传统的MCMC采样方法。

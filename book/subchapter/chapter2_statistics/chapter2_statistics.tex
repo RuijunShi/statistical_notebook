@@ -28,12 +28,14 @@
 \begin{subequations}
     \begin{align}
         P(AB)&=P(A)P(B) \\ 
-        P(B|A)&=P(B)\\
+        P(B|A)&=P(B)
     \end{align}
 \end{subequations}
 
 \section{单变量分布和多变量分布}
-\setlength{\parindent}{2em}1. 随机变量的概念（略）
+\subsection{单变量分布}
+\setlength{\parindent}{2em}
+1. 随机变量的概念（略）
 
 \indent2. 分布函数的概念（略）和性质：不减函数；$0\leq F(x)\leq 1 $; $F(x+0)=F(x)$
  
@@ -52,6 +54,21 @@
     \end{align}
     \end{subequations}
 \end{prop}
+\subsection{多变量分布}
+\begin{definition}{二维随机变量\\}
+    设$(X,Y)$是二维随机变量，对于任意实数$(x,y)$，二元函数$$F(x,y)=P\{ X\leq x, Y\leq y \}$$为二维随机变量$(X,Y)$的\textbf{分布函数}。在$(X,Y)$为离散型，离散状态下，二维随机变量$(x,y)$取值$(x_i,y_j)$, $i,j=1,2,\cdots$，则有：
+    $$P\{x=x_i,Y=y_j\}=p_{ij},\qquad i,j=1,2,\cdots$$
+    其中$p_{ij}\leq 0$且$\sum_i \sum_j p_{ij}=1$，则称为离散型随机随机变量的\textbf{分布律}或\textbf{联合分布律}
+\end{definition}
+
+\begin{definition}{联合概率密度\\}
+    对于非负可积的函数$f(x,y)$，对于任意实数$x,y$有
+    \begin{equation}
+        F(X,Y)=\int_{-\infty}^{y}\int_{-\infty}^{x} f(u,v)\mathrm{d}x\mathrm{d}y
+    \end{equation}
+    则称为函数$f(x,y)$为$(X,Y)$的\textbf{概率密度}或\textbf{联合概率密度}
+\end{definition}
+\subsection{边缘分布}
 
 
 \section{随机变量的数学特征}
@@ -67,20 +84,12 @@
         E(X)=\sum_{k=1}^{\infty}x_k p_k
     \end{equation}
 \end{definition}
-
-\begin{prop}{方差的性质}
-    \begin{itemize}
-        \item 设$C$为常数，则有$E(C)=C$
-        \item 设$C$为常数，$X$为随机变量，则有$$ E(CX)=CE(X) $$
-        \item 设$X,Y$两个随机变量，则有：$$ E(X+Y)=E(X)+E(Y) $$
-        \item 设$X,Y$是两个相互独立的随机变量，则有：$$ E(XY)=E(X)+E(Y) $$
-    \end{itemize}
-\end{prop}
-
 \begin{definition}{方差\\}
-    \setlength{\parindent}{2em}设$X$是一个随机变量，若$E\{ [X-E(X)]^2 \}$存在，则称为$E\{ [X-E(X)]^2 \}$为随机变量$X$的方差，记为$D(X)$或者$\mathrm{Var}(X)$
+    设$X$是一个随机变量，若$E\{ [X-E(X)]^2 \}$存在，则称为$E\{ [X-E(X)]^2 \}$为随机变量$X$的方差，记为$D(X)$或者$\mathrm{Var}(X)$
 \end{definition}
-\setlength{\parindent}{2em}根据定义，我们把方差写为：
+
+
+\setlength{\parindent}{2em}我们可以看到方差描述的是一个随机变量的离散程度。根据定义，我们把方差写为：
 \begin{equation}
     D(X)=\int^{\infty}_{-\infty} [x-E(x)]^2 f(x) \mathrm{d} x
 \end{equation}
@@ -99,18 +108,36 @@
 \end{prop}
 
 \subsection{矩和协方差矩阵}
+矩在物理学中有广泛的应用，比如我们熟悉的力矩，电荷的分布等。力矩描述了力在空间上的分布；质量函数描述了质量在空间的分布等等，可以用下面的公式表征：
+$$
+\mu_n = \int r^n \rho(r)\mathrm{d} r
+$$
+而统计学中的矩也是类似，表征了概率密度函数的形状。类似的，我们也可以在数学上定义矩的概念:
+\begin{definition}{矩的概念\\}
+    在数学上，矩是对函数的一种度量，是描述概率分布的一种方法。对于单变量分布，对于常数$c$的k阶矩，有：
+    \begin{equation}
+        \mu_k=\int (x-c)^k P(x)\mathrm{d}x
+    \end{equation}
+\end{definition}
+当$c=0,k=1$时，我们发现正是随机变量$X$的数学期望：
+$$ \mu_1=\int xP(x)\mathrm{d}x = E(x) $$我们把$c=0,k=k$的情况称为k阶原点矩。若$c=E(X),k=k$，则称为k阶中心距。我们看到方差公式正是我们的二阶中心矩。当我们有2个变量的时候可以定义混合矩的概念：
+$$\mu_{kl}=\iint (x-c_x)^k (y-c_y)^k P(x,y)\mathrm{d}x\mathrm{d}y$$
+同样的，当$c_x,c_y=0$时，称为$k+l$阶混合矩：$E\{X^kY^l\}$；当$c_x=E(X),c_y=E(Y)$时，称为$k+l$阶混合中心矩：$E\{X^kY^l\}$。而随机变量$X,Y$的二阶混合中心矩则为协方差。
 \begin{definition}{协方差}
     随机变量$E\{ (X-E(X))(Y-E(Y)) \}$称为变量X,Y的协方差，记为$\mathrm{Cov}(X,Y)$：
     \begin{equation}
         \mathrm{Cov}(X,Y)=E\{[X-E(X)][Y-E(Y)]\}
     \end{equation}
 \end{definition}
-\setlength{\parindent}{2em} 协方差是变量误差的一种描述。若随机变量X,Y完全独立则有$\mathrm{Cov}(X,Y)=0$
+
+协方差是变量误差的一种描述，衡量两个随机变量的相似性；而相关系数描述的是随机变量的相关性。若随机变量X,Y完全独立则有$\mathrm{Cov}(X,Y)=0$。
+
 \begin{definition}{相关系数}
     \begin{equation}
         \rho_{X,Y}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
     \end{equation}
 \end{definition}
+
 当二维随机变量的二阶中心矩存在：
 \begin{equation}
     \begin{aligned}
@@ -124,7 +151,11 @@
     c_{11}&c_{12}\\
     c_{21}&c_{22}
 \end{matrix}\right] $$
-称为协方差矩阵。若有$n$维随机变量，则矩阵：
+称为协方差矩阵。若有$n$维随机变量，
+\begin{equation}
+    c_{ij}=\mathrm{Cov}(X_i,X_j),i,j=1,2,\cdots,n
+\end{equation}
+则矩阵：
 \begin{equation}
     \mathbf{C}=\left[
     \begin{matrix}
@@ -135,85 +166,193 @@
     \end{matrix}
     \right]
 \end{equation}
-该矩阵是一个对称矩阵。
-\subsection{多元正态分布及协方差矩阵的直观理解}
-协方差矩阵描述随机变量的总体误差，而方差是协方差的一种特殊形式。协方差可以用多元正态分布直观理解其意义。
-\section{常见分布及其期望方差}
-\subsection{离散型分布}
-1. (0-1)分布:
-\begin{equation}
-    P(X=k)=p^{k}(1-p)^{1-k}, 0<p<1, k=0,1
-\end{equation}
+该矩阵是一个对称矩阵。在对角线上则为该变量的方差。
 
-2. 二项分布: 
+\begin{definition}{矩母函数\\}
+    定义矩母函数为：\begin{equation}
+        \psi(t)=E[e^{tX}]=\int e^{tX}dF(x)
+    \end{equation}
+\end{definition}
+对矩母函数求$n$次导可得：
+\begin{equation}
+    \psi^{n}(t) = E[X^n e^{tX}]
+\end{equation}
+当$t=0$时，我们发现：
+\begin{equation}
+    \psi ^n(0) = E[X^n]
+\end{equation}
+这正好对应了我们的n阶原点矩公式。
+\subsection{多元正态分布及协方差矩阵的直观理解}
+协方差矩阵描述随机变量的总体误差，表示随机变量之间的相似程度；而方差是协方差的一种特殊形式。协方差可以用多元正态分布直观理解其意义。对于一个边缘分布为正态分布的二维分布,其概率密度分布为：
+\begin{equation}
+    f(x_1,x_2)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp
+    \left\{ -\frac{1}{2(1-\rho^2)}\left[\frac{(x_1-\mu_1)^2}{\sigma^2_1}-2\rho\frac{(x_1-\mu_1)(x_2-\mu_2)}{\sigma_1^2\sigma_2^2}+\frac{(x_2-\mu_2)^2)}{\sigma^2_2}\right] \right\}
+\end{equation}
+我们知道二维正态分布的协方差为：$\mathrm{Cov}(X,Y)=\rho \sigma_1\sigma_2$
+其协方差矩阵为：
+$$\mathbf{C}=\left[
+    \begin{matrix}
+        c_{11} & c_{12} \\
+        c_{21} & c_{22}
+        \end{matrix}\right]=\left[
+    \begin{matrix}
+        \sigma_1^2 & \rho\sigma_1\sigma_2 \\
+        \rho\sigma_1\sigma_2 & \sigma_2^2
+    \end{matrix}
+\right]$$
+记$$\mathbf{X}=\left[
+    \begin{matrix}
+        x_1 \\
+        x_2
+    \end{matrix}\right],\quad
+    \mathbf{\mu}=\left[
+        \begin{matrix}
+            \mu_1 \\
+            \mu_2
+        \end{matrix}\right]$$
+    
+经过计算，我们发现：
+$$\begin{aligned}
+    &(\mathbf{X}-\mathbf{\mu})^T \mathrm{C}^{-1}(\mathbf{X}-\mathrm{\mu})\\
+    &=\frac{1}{2(1-\rho^2)}\left[\frac{(x_1-\mu_1)^2}{\sigma^2_1}-2\rho\frac{(x_1-\mu_1)(x_2-\mu_2)}{\sigma_1^2\sigma_2^2}+\frac{(x_2-\mu_2)^2)}{\sigma^2_2}\right] 
+\end{aligned}$$
+因此二维正态分布可以写为：
+$$f(x_1,x_2)=\frac{1}{(2\pi)^{2/2}(\det\mathbf{C})^{1/2}}\exp\left\{
+    -\frac{1}{2}(\mathbf{X}-\mathbf{\mu})^T \mathbf{C}^{-1}(\mathbf{X}-\mathbf{\mu})
+\right\}$$
+我们发现N维正态分布是由协方差矩阵$\mathbf{C}$规定的。当协方差$\mathbf{C}$改变时，多维正态分布的函数形状也会依此改变。
+
+------此处应该有图像-------
+\subsection{偏度和峰度}
+------未完待续-------
+\section{常见分布及其数学特征}
+\subsection{离散型分布}
+
+\begin{enumerate}
+\item (0-1)分布:
+\begin{equation}
+    P(X=k)=p^{k}(1-p)^{1-k},\qquad 0<p<1, k=0,1
+\end{equation}
+0-1分布是最简单的分布，一个只有两种结果的随机现象即为0-1分布。其期望为$p$，方差为$p(1-p)$
+
+\item 二项分布: 当有n次0-1分布时即为二项分布。
 \begin{equation}
     P(X=k)=\left(\begin{array}{l}n \\k\end{array}\right) p^{k}(1-p)^{n-k}
 \end{equation}
+其中$\left(\begin{matrix} n\\k \end{matrix}\right)=\frac{n!}{k!(n-k)!}$为二项式系数。
+均值：$np$; 方差：$np(1-p)$
 
-3. 泊松分布: 
+\item 泊松分布: 
 \begin{equation}
     P(X=k)=\frac{\lambda^{k} e^{-\lambda}}{k !}, k=0,1,2, \ldots
 \end{equation}
+当二项分布的n很大而p很小时候，泊松分布即为二项分布的近似。均值：$\lambda$; 方差: $\lambda$。这是最重要的离散分布。
+\end{enumerate}
 \subsection{连续型分布}
-4. Beta分布: 
-   \begin{equation}
-    f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}
-   \end{equation}
-   
-   其中：$0\leq x\leq 1, \ \alpha>0,\ \beta>0,\ \Gamma(z)=\int_{0}^{+\infty} t^{z-1} e^{-t} d t$
-
-5. 均匀分布: 
+首先介绍下$\Gamma$ 函数：
+\begin{equation}
+    \Gamma(z)=\int_{0}^{+\infty} t^{z-1} e^{-t} \mathrm{d} t
+\end{equation}
+这个函数在下面会经常用到。
+\begin{enumerate}
+\item 均匀分布: 
    \begin{equation}
         f(x)=\left\{\begin{array}{ll}\frac{1}{b-a} & a<x<b \\0 & \text { otherwise }\end{array}\right.
    \end{equation}
    
-6. 指数分布: 
+\item 指数分布: 
 \begin{equation}
     f(x)=\left\{\begin{array}{ll}\frac{1}{\theta} e^{-x / \theta} & x>0 \\0 & \text { otherwise }\end{array}\right.
 \end{equation}
+指数分布有一个非常重要的性质是无记忆性。
 
-7. 正态分布: 
+\item 正态分布: 
 \begin{equation}
     f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
 \end{equation}
-   $f(x)$关于$\mu$对称；$f(\mu)=max(f(x))=\frac{1}{\sqrt{2\pi}\sigma}$。
+$f(x)$关于$\mu$对称；$f(\mu)=\max[f(x)]=\frac{1}{\sqrt{2\pi}\sigma}$。均值为$\mu$；方差为$\sigma ^2$。
 
-8. $Gamma$分布: 
+正态分布又称为高斯分布，多维高斯分布在天文中也是非常重要的，很多参数的估计开始都要考虑一个多维正态分布。
+
+\item  Beta分布: 
+   \begin{equation}
+    f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}
+   \end{equation}
+其中：$0\leq x\leq 1, \ \alpha>0,\ \beta>0,\ \Gamma(z)=\int_{0}^{+\infty} t^{z-1} e^{-t} \mathrm{d} t$。其期望为：$\frac{a}{a+b}$，方差为：$\frac{ab}{(a+b)^2(a+b+1)}$
+Beta分布是从伯努利事件建模的出来的，Beta分布描述了一个事物出现的所有可能性的大小分布。
+
+\item Gamma分布: 
 \begin{equation}
    f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}
 \end{equation}
-   其中：$x>0,\ \alpha>0,\ \beta>0$
+其中：$x>0,\ \alpha>0,\ \beta>0$; 数学期望为：$\frac{1}{\lambda}$; 方差为：$\frac{n}{\lambda ^2}$
 
-9. Inv-$Gamma$分布: 
+\item Inv-Gamma分布: 
 \begin{equation}
     f(x)=\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{-(\alpha+1)} e^{-\frac{\beta}{x}}
 \end{equation}
-   其中：$x>0,\ \alpha>0,\ \beta>0$
+其中：$x>0,\ \alpha>0,\ \beta>0$
 
-10. $\chi ^2$分布: 
+\item $\chi ^2$分布: 
 \begin{equation}
     f_{k}(x)=\frac{1}{2^{\frac{k}{2}} \Gamma\left(\frac{k}{2}\right)} x^{\frac{k}{2}-1} e^{-\frac{x}{2}}
 \end{equation}
-    等价$\alpha=k/2,\beta = 1/2$的Gamma分布
+等价$\alpha=k/2,\beta = 1/2$的Gamma分布
 
-11. Inv-$\chi ^2$分布: 
+\item  Inv-$\chi ^2$分布: 
 \begin{equation}
     f(x)=\frac{2^{-\frac{k}{2}}}{\Gamma\left(\frac{k}{2}\right)} x^{-\left(\frac{k}{2}+1\right)} e^{-\frac{1}{2 x}}
 \end{equation}
-    
-    等价$\alpha=k/2,\beta = 1/2$的Inv-Gamma分布
+等价$\alpha=k/2,\beta = 1/2$的Inv-Gamma分布
 
-12. Scaled Inv-$\chi ^2$分布: 
+\item  Scaled Inv-$\chi ^2$分布: 
    \begin{equation}
        f(x)=\frac{\frac{k}{2}^{-\frac{k}{2}} s^{k}}{\Gamma\left(\frac{k}{2}\right)} x^{-\left(\frac{k}{2}+1\right)} e^{-\frac{k s^{2}}{2 x}}
    \end{equation}
      等价$\alpha=k/2,\beta = ks^2/2$的Inv-Gamma分布。
-
-\section{大数定律与数理统计}
-
-
+\end{enumerate}
+这些分布各有各的作用，也有其数学上和现实的意义。
 \section{误差传递}
+\section{从大数定律，中心极限定理到数理统计}
+\begin{theorem}{弱大数定理，辛钦大数定理\\}
+    设$X_1,X_2,\cdots$是独立同分布的，且数学期望为$E(x_k)=\mu$，前n个变量的算术平均为$\frac{1}{n}\sum_{k=1}^{n}X_K$，则对于任意的的$\varepsilon > 0$有：
+    \begin{equation}
+        \lim_{n\rightarrow \infty}P \left\{
+        \left\lvert \frac{1}{n}\sum_{k=1}^{n}X_K - \nu \right \rvert < \varepsilon
+        \right\}=1
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}{强大数定理\\}
+    若$X_1,X_2,\cdots$独立同分布，且都有均值$\mu$，则：
+    \begin{equation}
+        P\{ \lim_{n\rightarrow \infty}(X_1+\cdots+X_n)/n=\mu \}=1
+    \end{equation}
+\end{theorem}
+
+
+
+\begin{theorem}{中心极限定理\\}
+    若$X_1,X_2,\cdots$独立同分布，且都有均值$\mu$和方差$\sigma ^2$，则：
+    \begin{equation}
+        \lim_{n\rightarrow \infty} 
+        P\left\{\frac{X_1+\cdots+X_n-n\mu}{\sigma \sqrt{n}}  \leq a \right\}=
+        \int _{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\mathrm{d}x
+    \end{equation}
+\end{theorem}
+大数定理告诉我们只要采样n足够大就能逼近期待值；而中心极限定理说明了如果采样n逼近无穷，会呈现一个正态分布。这也是正态分布在统计学上非常重要的原因之一。
+
+大数定理和中心极限定理是概率论与数理统计的桥梁，当我们样本足够大的时候可以反映一个事物的统计性质，这也为下面从随机抽样到数理统计建设起一条桥梁。
 
 \section{参数估计}
+\subsection{点估计}
+\subsection{最大似然估计}
+\subsection{区间估计}
+\subsection{置信区间}
 
 \section{假设检验}
+假设检验的出发点是：小概率事件不可能发生。由于我们对一个总体数据没有办法进行完全抽样统计，只能抽出一部分样本来估计总体情况。因此假设检验就是提出一个\textbf{原假设$H_0$}，然后对其假设进行统计推断，做出接受假设$H_0$还是拒绝假设$H_0$。首先假设$H_0$是正确的时，若抽样得到的样本d导致了小概率事件的发生，则拒绝原假设$H_0$，否之接受假设$H_0$。
+
+当接受假设$H_0$时，则拒绝假设$H_1$；当拒绝假设$H_0$时，则为接受假设$H_1$。由于我们的假设不可能是完全正确的，这时候就会出现两类错误：第一类错误是\textbf{弃真错误：当假设$H_0$真时拒绝原假设}；第二类错误是\textbf{取伪错误：当假设$H_0$假时接受原假设}。
+
+\subsection{显著性检验}

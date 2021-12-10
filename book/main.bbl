@@ -1,12 +1,5 @@
 \begin{thebibliography}{1}
 
-\bibitem{jaranowski_analysis_2009}
-Piotr Jaranowski and Andrzej Królak.
-\newblock {\em Analysis of gravitational-wave data}.
-\newblock Number~29 in Cambridge monographs on particle physics, nuclear
-  physics and cosmology. Cambridge University Press, Cambridge ; New York,
-  2009.
-
 \bibitem{gelman_bayesian_2014}
 Andrew Gelman, John~B Carlin, Hal~Steven Stern, David~B Dunson, Aki Vehtari,
   and Donald~B Rubin.
@@ -17,5 +10,34 @@ Andrew Gelman, John~B Carlin, Hal~Steven Stern, David~B Dunson, Aki Vehtari,
 \bibitem{justin_ellis_2017_1037579}
 Justin Ellis and Rutger van Haasteren.
 \newblock jellis18/ptmcmcsampler: Official release, October 2017.
+
+\bibitem{godsill_relationship_2001}
+Simon~J Godsill.
+\newblock On the {Relationship} {Between} {Markov} chain {Monte} {Carlo}
+  {Methods} for {Model} {Uncertainty}.
+\newblock {\em Journal of Computational and Graphical Statistics},
+  10(2):230--248, June 2001.
+
+\bibitem{hee_bayesian_2016}
+S.~Hee, W.~J. Handley, M.~P. Hobson, and A.~N. Lasenby.
+\newblock Bayesian model selection without evidences: application to the dark
+  energy equation-of-state.
+\newblock {\em Monthly Notices of the Royal Astronomical Society},
+  455(3):2461--2473, January 2016.
+
+\bibitem{arzoumanian_nanograv_2016}
+Z.~Arzoumanian, A.~Brazier, S.~Burke-Spolaor, S.~J. Chamberlin, S.~Chatterjee,
+  B.~Christy, J.~M. Cordes, N.~J. Cornish, K.~Crowter, P.~B. Demorest, X.~Deng,
+  T.~Dolch, J.~A. Ellis, R.~D. Ferdman, E.~Fonseca, N.~Garver-Daniels, M.~E.
+  Gonzalez, F.~Jenet, G.~Jones, M.~L. Jones, V.~M. Kaspi, M.~Koop, M.~T. Lam,
+  T.~J.~W. Lazio, L.~Levin, A.~N. Lommen, D.~R. Lorimer, J.~Luo, R.~S. Lynch,
+  D.~R. Madison, M.~A. McLaughlin, S.~T. McWilliams, C.~M.~F. Mingarelli, D.~J.
+  Nice, N.~Palliyaguru, T.~T. Pennucci, S.~M. Ransom, L.~Sampson, S.~A.
+  Sanidas, A.~Sesana, X.~Siemens, J.~Simon, I.~H. Stairs, D.~R. Stinebring,
+  K.~Stovall, J.~Swiggum, S.~R. Taylor, M.~Vallisneri, R.~van Haasteren,
+  Y.~Wang, W.~W. Zhu, and {The NANOGrav Collaboration}.
+\newblock {THE} {NANOGRAV} {NINE}-{YEAR} {DATA} {SET}: {LIMITS} {ON} {THE}
+  {ISOTROPIC} {STOCHASTIC} {GRAVITATIONAL} {WAVE} {BACKGROUND}.
+\newblock {\em The Astrophysical Journal}, 821(1):13, April 2016.
 
 \end{thebibliography}
