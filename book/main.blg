@@ -2,7 +2,6 @@ This is BibTeX, Version 0.99d (TeX Live 2021/W32TeX)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: unsrt.bst
-A level-1 auxiliary file: subchapter/chapter1/chapter1_math.aux
 A level-1 auxiliary file: subchapter/chapter2_statistics/chapter2_statistics.aux
 A level-1 auxiliary file: subchapter/chapter3_bayes/chapter3_bayes.aux
 A level-1 auxiliary file: subchapter/Stochastic_Processes/stochastic_processes.aux
@@ -13,7 +12,7 @@ Database file #1: books.bib
 Warning--empty publisher in gelman_bayesian_2014
 You've used 5 entries,
             1791 wiz_defined-function locations,
-            481 strings with 5640 characters,
+            480 strings with 5603 characters,
 and the built_in function-call counts, 1728 in all, are:
 = -- 87
 > -- 204

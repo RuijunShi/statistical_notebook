@@ -49,13 +49,44 @@ $$ p(cowC|openB) = \frac{p(openB|cowA)p(cowA)}{p(openB|cowA)p(cowA)+p(openB|cowC
 \input{subchapter/chapter3_bayes/section/section_Hier_bayes_model.tex}
 
 \section{贝叶斯回归}
-\subsection{最小二乘法}
+\subsection{线性贝叶斯回归}
+对于有n组观测数据，一般记为：
+\begin{equation}
+    y=(y_1,y_2,\cdots,y_n)^T
+\end{equation}
+解释变量记为：
+\begin{equation}
+    X=\begin{bmatrix}  
+        1 & x_{11} & x_{12} & \cdots & x_{1k} \\
+        1 & x_{21} & x_{22} & \cdots & x_{2k} \\
+        1 & \vdots & \vdots & \ddots & \vdots \\
+        1 & x_{n1} & x_{n2} & \cdots & x_{nk}
+      \end{bmatrix}
+\end{equation}
+我们看到一共有n行，也就是一共采样到n组数据；有k列，也就是说一组解释数据有(k-1)个变量。一般把第一列设置为1，因为我们在进行线性回归时有一个常数。回归系数$\beta = (\beta_1,\beta_2,\cdots,\beta_k)^T$。这样回归方程可以写为：
+\begin{equation}
+    E(y_i|\beta,X)=\beta_1 x_{i1}+\cdots+\beta_kx_{ik} \qquad i=1,\cdots,n
+\end{equation}
+用矩阵表示为：
+\begin{equation}
+    E(y|\beta,X)=X\beta
+\end{equation}
+对于常规的线性回归情形，一般的我们认为给定的回归残差为一个正态分布，其回归方差为：
+\begin{equation*}
+    D(y_i|\theta,X)=\sigma^2
+\end{equation*}
+对于所有的i组数据都相同。因此我们的回归参数$\theta=(\beta,\sigma^2)$我们记：
+\begin{equation}
+    p(y|\beta,\sigma^2,X)\sim N(X\beta,\sigma^2I)
+\end{equation}
+其中I是一个$n\times n$的单位矩阵。对于正态回归模型,我们的先验可以写为：
+\begin{equation}
+    p(\beta,\sigma^2|X)\sim \sigma^{-2}
+\end{equation}
 
-\subsection{贝叶斯回归的原理}
-
-
+\subsection{更一般的贝叶斯回归}
+\subsection{有先验信息的贝叶斯回归}
 \section{贝叶斯模型选择}
-\subsection{Bayes Factor and Odd Ratio}
 %在模型选择上贝叶斯因子有非常重要的作用，贝叶斯因子说明数据更加偏向哪个假设。这部分参考了MIT的Jeremy Orloff and Jonathan Bloom\thanks{\href{MIT：Jeremy Orloff and Jonathan Bloom}{https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading12b.pdf}}的讲义
 \begin{definition}{贝叶斯因子\\}
     在观测数据d中选择两个模型假设$H_1$和$H_2$，其参数为$\theta_1$和$\theta_2$，贝叶斯因子为：
@@ -84,11 +115,11 @@ OR和BF的关系是什么呢？结合BF公式\ref{bayes_factor}我们把OR展开
         &= \mathrm{BF}\cdot \mathrm{prior\ odds}
     \end{aligned}
 \end{equation}
-因此Odds ratio是Bayes factor乘先验比。\\
+因此Odds ratio是Bayes factor乘先验比。
 
-
-
-
-\subsection{奥卡姆剃刀}
-如无必要，勿增实体
+对于模型选择，有一个非常著名的定理：\textbf{奥卡姆剃刀}。这个定理的概括来说就是：\textbf{如无必要，勿增实体}。
 \section{费舍尔信息矩阵Fisher Information}
+
+\begin{equation}
+    \Gamma_{ij}(\theta):=E_{\theta}\left\{ \frac{\partial \ln p(x;\boldsymbol{\theta})}{\partial \theta_i} \frac{\partial \ln p(x;\boldsymbol{\theta})}{\partial \theta_j} \right\}
+\end{equation}
